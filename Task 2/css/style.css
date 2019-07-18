@@ -4,15 +4,28 @@
 
 /*Шапка*/
 
+header {
+    min-height: 100px;
+}
+
 header a {
     color: blue;
     font-size: 20px;
     font-family: FuturaBookC, sans-serif;
 }
 
+header a:hover {
+    color: forestgreen;
+}
+
 header li {
     list-style-type: none;
 }
+
+header img {
+    height: 100px;
+    float: right;
+ }
 
 /*Страничка Главная*/
 
@@ -30,6 +43,11 @@ header li {
 
 .h_product_img {
     border: 10px solid silver;
+}
+
+.h_product_fd:first-letter, .h_product_sd:first-letter {
+    color: blue;
+    font-size: 16px;
 }
 
 .h_product_fd {
@@ -55,9 +73,14 @@ header li {
     text-align: left;
 }
 
+table {
+    border: 2px solid silver;
+}
+
 /*Страничка Контакты*/
 
 input {
+    text-transform: capitalize;
     height: 20px;
     width: 200px;
     border-radius: 10px;
