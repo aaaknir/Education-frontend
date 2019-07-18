@@ -1,0 +1,65 @@
+* {
+    background-color: #f8f8f8;
+}
+
+/*Шапка*/
+
+header a {
+    color: blue;
+    font-size: 20px;
+    font-family: FuturaBookC, sans-serif;
+}
+
+header li {
+    list-style-type: none;
+}
+
+/*Страничка продукта*/
+.h_product {
+    color: black;
+    font-size: 18px;
+    background-color: #eaeaea;
+    font-weight: 400;
+}
+
+.h_product_img {
+    border: 10px solid silver;
+}
+
+.h_product_fd {
+    color: #707070;
+    font-size: 14px;
+    font-style: italic;
+    line-height: 16px;
+}
+
+.h_product_ol {
+    color: #505050;
+    font-size: 16px;
+    line-height: 16px;
+    list-style-image: url("../img/catalog/product_ol.png");
+    text-align: center;
+}
+
+.h_product_sd {
+    color: #484343;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+    text-align: left;
+}
+
+/*Страничка Контакты*/
+
+input {
+    height: 20px;
+    width: 200px;
+    border-radius: 10px;
+    font-size: 14px;
+    color: blue;
+}
+
+#text_field {
+    height: 100px;
+    width: 300px;
+}
