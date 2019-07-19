@@ -3,6 +3,7 @@
     padding: 0;
 }
 
-header {
-    width:30px;
+.container {
+    width: 1366px;
+    margin: auto;
 }
