@@ -27,8 +27,18 @@ a.knopka {
     padding: .7em 1.5em; /* отступ от текста */
     outline: none; /* убирать контур в Mozilla */
 }
+
 a.knopka:hover { background: rgb(232,95,76); } /* при наведении курсора мышки */
 a.knopka:active { background: rgb(152,15,0); } /* при нажатии */
+
+a.knopka_rub {
+    color: #fff; /* цвет текста */
+    text-decoration: none; /* убирать подчёркивание у ссылок */
+    user-select: none; /* убирать выделение текста */
+    background: rgb(180, 72, 53); /* фон кнопки */
+    padding: .7em 1.5em; /* отступ от текста */
+    outline: none; /* убирать контур в Mozilla */
+}
 
 /*Шапка*/
 
@@ -40,14 +50,18 @@ header {
 }
 
 header a {
-    color: blue;
+    color: #787878;
     font-size: 20px;
     font-family: FuturaBookC, sans-serif;
     margin-right: 10px;
+    border: 5px solid transparent;
 }
 
 header a:hover {
-    color: forestgreen;
+    color: black;
+    background-color: #eaeaea;
+    border: 5px solid #eaeaea;
+    border-radius: 3px;
 }
 
 .menu_a {
@@ -76,10 +90,7 @@ article {
     display: block;
     float: left;
     margin-right: 5px;
-}
-
-.letter {
-    margin-left: 20px;
+    text-align: center;
 }
 
 /*Страничка продукта*/
@@ -88,7 +99,18 @@ article {
     display: block;
     float: left;
     margin: 10px;
-    min-width: 300px;
+}
+
+.product_block_1 {
+    display: block;
+    float: left;
+    margin-top: 20px;
+    width: 650px;
+    text-align: center;
+}
+
+.product_block_1 table {
+    width: 100%;
 }
 
 .h_product {
@@ -98,17 +120,22 @@ article {
     font-weight: 400;
 }
 
-.h_product_img {
+.h_product_img, .h_product_img_1 {
     border: 5px solid silver;
 }
 
-.h_product_img:hover {
-    border: 5px solid transparent;
+.h_product_img {
+    width: 300px;
+    height: 300px;
 }
 
-.h_product_fd:first-letter, .h_product_sd:first-letter {
-    color: blue;
-    font-size: 16px;
+.h_product_img_1 {
+    width: 150px;
+    height: 150px;
+}
+
+.h_product_img:hover, .h_product_img_1:hover {
+    border: 5px solid transparent;
 }
 
 .h_product_fd {
