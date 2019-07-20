@@ -557,6 +557,13 @@ ul.menu li a:hover {
     display: inline-block;
 }
 
+.mobile_app div.app_store:hover, .mobile_app div.google:hover {
+    padding-top: 20px;
+    display: inline-block;
+    box-shadow: 20px 20px 20px #ccc;
+    border-radius: 20px;
+}
+
 footer {
     max-width: 1366px;
     height: 386px;
@@ -629,7 +636,7 @@ footer div.form {
     padding-top: 10px;
 }
 
-footer input {
+footer input[type=email]{
     width: 370px;
     height: 48px;
     font-style: normal;
@@ -639,9 +646,16 @@ footer input {
     color: #6C6C6C;
 }
 
-footer img {
-    position: absolute;
-    padding: 5px;
+footer input[type=submit] {
+    height: 17px;
+    width: 21px;
+    border: 1px none transparent;
+    background-color: transparent;
+    float: right;
+    position: relative;
+    background-image: url("../img/sent.png");
+    top: -35px;
+    right: 40px;
 }
 
 footer div.block4 {
