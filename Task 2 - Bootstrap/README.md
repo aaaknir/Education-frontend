@@ -1,3 +1,3 @@
 Задание 2 
 
-Выполнить задания из курса Geekbrains по HTML/CSS.
+Выполнить задания из курса Geekbrains по HTML/CSS. Изучить Bootstrap
