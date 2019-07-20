@@ -20,14 +20,8 @@ body {
 
 .container {
     max-width: 1366px;
-    margin: 0 auto -386px;
-    min-height: 100%;
-}
-
-.content:after {
-    content: '';
-    display: block;
-    height: 386px;
+    margin: 0 auto;
+    min-height: calc(100% - 386px);
 }
 
 header {

@@ -9,18 +9,24 @@ a {
     text-decoration: none;
 }
 
+html {
+    height: 100%;
+}
+
 body {
     font-family: 'Montserrat', sans-serif;
+    height: 100%;
 }
 
 .container {
     max-width: 1366px;
     margin: 0 auto;
+    min-height: calc(100% - 386px);
 }
 
 header {
-    background-image: url("../img/header.jpg");
-    height: 800px;
+    height: 362px;
+    background-image: url("../img/header_contact.png");
 }
 
 header img.logo {
@@ -59,6 +65,7 @@ ul.menu {
 
 ul.menu li {
     display: inline-block;
+    font-weight: 700;
     padding: 10px;
 }
 
@@ -85,11 +92,22 @@ ul.menu li:hover {
     color: #212121;
     font-weight: 700;
     border-bottom: 3px solid #212121;
+    cursor: pointer;
 }
 
 ul.menu li a:hover {
     color: #212121;
     font-weight: 700;
+}
+
+.letter {
+    margin-top: 166px;
+    margin-left: 102px;
+    font-style: normal;
+    font-weight: 200;
+    font-size: 62px;
+    line-height: 72px;
+    color: #212121;
 }
 
 .slider {
@@ -148,123 +166,6 @@ ul.menu li a:hover {
     height: 40px;
     margin: 147px auto 20px auto;
     box-sizing: border-box;
-}
-
-.navigation div.circle {
-    width: 30px;
-    height: 30px;
-    -webkit-border-radius: 25px;
-    -moz-border-radius: 25px;
-    border-radius: 25px;
-    background: #dadada;
-    display: inline-block;
-}
-
-.navigation div.circle:hover {
-    width: 40px;
-    height: 40px;
-    -webkit-border-radius: 25px;
-    -moz-border-radius: 25px;
-    border-radius: 25px;
-    background: #212121;
-    display: inline-block;
-    box-shadow: 5px 5px 5px #ccc;
-    cursor: pointer;
-}
-
-.future_products {
-    background-color: white;
-    width: 1173px;
-    height: 370px;
-    margin: 120px auto 190px auto;
-}
-
-.future_products div.control{
-    width: 309px;
-    height: 50px;
-    float: left;
-}
-
-.future_products div.control span{
-    font-style: normal;
-    font-weight: bold;
-    font-size: 36px;
-    color: #6C6C6C;
-    border-bottom: 3px solid #6C6C6C;
-    display: inline-block;
-}
-
-.future_products div.control span:hover{
-    font-style: normal;
-    font-weight: bold;
-    font-size: 36px;
-    color: #212121;
-    border-bottom: 5px solid #212121;
-    cursor: pointer;
-}
-
-.future_products div.ghost a{
-    width: 195px;
-    height: 24px;
-    float: right;
-    font-style: normal;
-    font-weight: bold;
-    font-size: 18px;
-    line-height: 24px;
-    text-align: center;
-    letter-spacing: 3.6px;
-    color: #6C6C6C;
-    margin-top: 10px;
-}
-
-.future_products div.ghost a:hover{
-    border-bottom: 3px solid #6c6c6c;
-    cursor: pointer;
-}
-
-.future_products div.content{
-    height: 272px;
-    width: 1171px;
-    padding-top: 98px;
-}
-
-.content div.product1, .content div.product2, .content div.product3, .content div.product4 {
-    width: 270px;
-    height: 270px;
-    display: inline-block;
-    float: left;
-}
-
-.content div.product1 {
-    background-image: url("../img/product1.png");
-}
-
-.content div.product1_hover {
-    background-image: url("../img/product1_1.png");
-    display: none;
-}
-
-.content div.product1:hover .product1_hover, .content div.product2:hover .product1_hover,  .content div.product3:hover .product1_hover, .content div.product4:hover .product1_hover {
-    width: 270px;
-    height: 270px;
-    display: inline-block;
-    float: left;
-    cursor: pointer;
-}
-
-.content div.product2 {
-    background-image: url("../img/product2.png");
-    margin-left: 30px;
-}
-
-.content div.product3 {
-    background-image: url("../img/product3.png");
-    margin-left: 30px;
-}
-
-.content div.product4 {
-    background-image: url("../img/product4.png");
-    margin-left: 30px;
 }
 
 .promo_products {
@@ -346,29 +247,21 @@ ul.menu li a:hover {
     height: 869px;
 }
 
-.trending_products div.title_1 {
-    float: left;
-    width: 361px;
-    height: 35px;
-    font-style: normal;
-    font-weight: bold;
-    font-size: 36px;
-    color: #212121;
-}
-
-.trending_products div.title_2, .trending_products div.title_2 a {
-    float: right;
-    font-style: normal;
-    font-weight: bold;
-    font-size: 18px;
-    line-height: 24px;
-    letter-spacing: 3.6px;
+.trending_products ul.menu li {
+    display: inline-block;
+    font-weight: 700;
+    padding: 10px;
     color: #6C6C6C;
-    margin-top: 10px;
 }
 
-.trending_products div.title_2 a:hover {
-    border-bottom: 3px solid #6c6c6c;
+.trending_products ul.menu li {
+    border-bottom: 3px solid #6C6C6C;
+}
+
+.trending_products ul.menu li:hover {
+    color: #212121;
+    font-weight: 700;
+    border-bottom: 3px solid #212121;
     cursor: pointer;
 }
 
@@ -419,157 +312,6 @@ ul.menu li a:hover {
     background-image: url("../img/trend6.png");
     margin-left: 30px;
     margin-top: 30px;
-}
-
-.hot_deal {
-    height: 800px;
-    width: 1366px;
-    background-image: url("../img/hot_deal.png");
-}
-
-.hot_deal div.slider {
-    padding-top: 272px;
-}
-
-.hot_deal div.navigation {
-    padding-top: 318px;
-}
-
-.exclusive_products {
-    width: 1170px;
-    height: 570px;
-    margin: 120px auto 120px auto;
-    display: grid;
-    grid-template-columns: 50% 50%;
-}
-
-.exclusive_products div.product {
-    background-image: url("../img/exclusive1.png");
-}
-
-.exclusive_products div.promo {
-    padding-left: 29px;
-    padding-top: 171px;
-}
-
-.exclusive_products  div.promo div.tag {
-    width: 145px;
-    height: 48px;
-    font-style: normal;
-    font-weight: bold;
-    font-size: 18px;
-    line-height: 48px;
-    letter-spacing: 1.8px;
-    color: white;
-}
-
-.exclusive_products div.promo div.name {
-    width: 266px;
-    height: 28px;
-    font-style: normal;
-    font-weight: bold;
-    font-size: 36px;
-    color: #212121;
-}
-
-.exclusive_products div.promo div.details {
-    margin-top: 30px;
-    width: 362px;
-    height: 36px;
-    font-style: normal;
-    font-weight: 300;
-    font-size: 13.9897px;
-    line-height: 24px;
-    color: #6c6c6c;
-}
-
-.exclusive_products div.promo div.order_img {
-    background-image: url("../img/order.png");
-    width: 214px;
-    height: 47px;
-}
-
-.exclusive_products div.promo div.order {
-    margin-top: 40px;
-    font-style: normal;
-    font-weight: bold;
-    font-size: 18px;
-    line-height: 24px;
-    letter-spacing: 3.6px;
-    color: #6C6C6C;
-    padding-top: 10px;
-    text-align: center;
-}
-
-.exclusive_products div.images {
-    width: 570px;
-    height: 570px;
-    margin-left: 30px;
-}
-
-.exclusive_products div.images div.exclusive1, .exclusive_products div.images div.exclusive2, .exclusive_products div.images div.exclusive3, .exclusive_products div.images div.exclusive4 {
-    width: 270px;
-    height: 270px;
-    display: inline-block;
-    float: left;
-}
-
-.exclusive_products div.images div.exclusive1:hover, .exclusive_products div.images div.exclusive2:hover, .exclusive_products div.images div.exclusive3:hover, .exclusive_products div.images div.exclusive4:hover {
-    opacity: 0.7;
-    cursor: pointer;
-}
-
-.exclusive_products div.images div.exclusive1 {
-    background-image: url("../img/exclusive2.png");
-}
-
-.exclusive_products div.images div.exclusive2 {
-    background-image: url("../img/exclusive3.png");
-    margin-left: 30px;
-}
-
-.exclusive_products div.images div.exclusive3 {
-    background-image: url("../img/exclusive4.png");
-    margin-top: 30px;
-}
-
-.exclusive_products div.images div.exclusive4 {
-    background-image: url("../img/exclusive5.png");
-    margin-top: 30px;
-    margin-left: 30px;
-}
-
-.mobile_app {
-    height: 516px;
-    width: 1366px;
-    background-image: url("../img/mobile.png");
-}
-
-.mobile_app div.slider {
-    padding-top: 110px;
-}
-
-.mobile_app div.slider div.details {
-    width: 443px;
-    height: 24px;
-    font-style: normal;
-    font-weight: 300;
-    font-size: 22px;
-    line-height: 24px;
-    color: #6C6C6C;
-}
-
-.mobile_app div.app_store, .mobile_app div.google {
-    padding-top: 20px;
-    display: inline-block;
-}
-
-.mobile_app div.app_store:hover, .mobile_app div.google:hover {
-    padding-top: 20px;
-    display: inline-block;
-    box-shadow: 20px 20px 20px #ccc;
-    border-radius: 20px;
-    cursor: pointer;
 }
 
 footer {

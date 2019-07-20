@@ -9,13 +9,19 @@ a {
     text-decoration: none;
 }
 
+html {
+    height: 100%;
+}
+
 body {
     font-family: 'Montserrat', sans-serif;
+    height: 100%;
 }
 
 .container {
     max-width: 1366px;
     margin: 0 auto;
+    min-height: calc(100% - 386px);
 }
 
 header {
