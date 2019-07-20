@@ -27,12 +27,19 @@ header img.logo {
     float: left;
 }
 
+div.order_img:hover {
+    box-shadow: 10px 10px 10px #ccc;
+    border-radius: 25px;
+}
+
 .navbar {
-    padding: 63px 167px 0 98px;
+    padding: 50px 167px 0 98px;
     max-width: 1366px;
     height: 90px;
     background: #f9f9f9;
     box-sizing: border-box;
+    display: grid;
+    grid-template-columns: 50% 50%;
 }
 
 .navbar.search {
@@ -181,6 +188,7 @@ ul.menu li a:hover {
     font-size: 36px;
     color: #6C6C6C;
     border-bottom: 3px solid #6C6C6C;
+    display: inline-block;
 }
 
 .future_products div.control span:hover{
@@ -219,11 +227,37 @@ ul.menu li a:hover {
 }
 
 .content div.product1 {
-    background-image: url("../img/product1_1.png");
+    background-image: url("../img/product1.png");
 }
 
-.content div.product1:hover {
-    background-image: url("../img/product1.png");
+.content div.product1_hover {
+    background-image: url("../img/product1_1.png");
+    display: none;
+}
+
+.content div.product1:hover .product1_hover {
+    width: 270px;
+    height: 270px;
+    display: inline-block;
+    float: left;
+}
+.content div.product2:hover .product1_hover {
+    width: 270px;
+    height: 270px;
+    display: inline-block;
+    float: left;
+}
+.content div.product3:hover .product1_hover {
+    width: 270px;
+    height: 270px;
+    display: inline-block;
+    float: left;
+}
+.content div.product4:hover .product1_hover {
+    width: 270px;
+    height: 270px;
+    display: inline-block;
+    float: left;
 }
 
 .content div.product2 {
