@@ -144,7 +144,7 @@ ul.menu li a:hover {
 }
 
 .navigation {
-    width: 120px;
+    width: 160px;
     height: 40px;
     margin: 147px auto 20px auto;
     box-sizing: border-box;
@@ -160,7 +160,7 @@ ul.menu li a:hover {
     display: inline-block;
 }
 
-.navigation div.circle:hover {
+.circle1, .navigation div.circle:hover {
     width: 40px;
     height: 40px;
     -webkit-border-radius: 25px;
