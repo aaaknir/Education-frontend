@@ -45,8 +45,6 @@ div.order_img:hover {
     height: 90px;
     background: #f9f9f9;
     box-sizing: border-box;
-    display: grid;
-    grid-template-columns: 50% 50%;
 }
 
 .navbar.search {
@@ -108,6 +106,7 @@ ul.menu li a:hover {
     font-size: 62px;
     line-height: 72px;
     color: #212121;
+    float: left;
 }
 
 .slider {
@@ -241,77 +240,88 @@ ul.menu li a:hover {
     text-align: center;
 }
 
-.trending_products {
-    margin: 119px auto 120px auto;
-    width: 1172px;
-    height: 869px;
+.trending_products_1 {
+    margin: 70px 584px 20px 97px;
+    width: 685px;
+    height: 36px;
 }
 
-.trending_products ul.menu li {
+.trending_products_1 ul.menu li {
     display: inline-block;
     font-weight: 700;
     padding: 10px;
     color: #6C6C6C;
-}
-
-.trending_products ul.menu li {
     border-bottom: 3px solid #6C6C6C;
 }
 
-.trending_products ul.menu li:hover {
+.trending_products_1 ul.menu li:hover {
     color: #212121;
     font-weight: 700;
     border-bottom: 3px solid #212121;
     cursor: pointer;
 }
 
-.trending_products div.products {
+.trending_products_2 div.products, .trending_products_3 div.products {
     width: 1170px;
     height: 770px;
-    padding-top: 99px;
 }
 
-.trending_products  div.trend1, .trending_products div.trend2, .trending_products div.trend3, .trending_products div.trend4, .trending_products div.trend5, .trending_products div.trend6 {
+.trending_products_2 div.products {
+    margin: 49px auto 29px;
+}
+.trending_products_3 div.products {
+    margin: 0 auto 49px;
+}
+
+div.trend1, div.trend2, div.trend3, div.trend4, div.trend5, div.trend6 {
     width: 370px;
     height: 370px;
     display: inline-block;
     float: left;
 }
 
-.trending_products  div.trend1:hover, .trending_products div.trend2:hover, .trending_products div.trend3:hover, .trending_products div.trend4:hover, .trending_products div.trend5:hover, .trending_products div.trend6:hover {
+div.trend1:hover, div.trend2:hover, div.trend3:hover, div.trend4:hover, div.trend5:hover, div.trend6:hover {
     opacity: 0.7;
     cursor: pointer;
 }
 
-.trending_products div.trend1 {
+div.trend1 {
     background-image: url("../img/trend1.png");
 }
 
-.trending_products div.trend2 {
+div.trend2 {
     background-image: url("../img/trend2.png");
     margin-left: 30px;
 }
 
-.trending_products div.trend3 {
+div.trend3 {
     background-image: url("../img/trend3.png");
     margin-left: 30px;
 }
 
-.trending_products div.trend4 {
+div.trend4 {
     background-image: url("../img/trend4.png");
     margin-top: 30px;
 }
 
-.trending_products div.trend5 {
+div.trend5 {
     background-image: url("../img/trend5.png");
     margin-left: 30px;
     margin-top: 30px;
 }
 
-.trending_products div.trend6 {
+div.trend6 {
     background-image: url("../img/trend6.png");
     margin-left: 30px;
     margin-top: 30px;
+}
+
+.reload img{
+    margin: 49px 657px 119px 637px;
+}
+
+.reload img:hover {
+    cursor: pointer;
 }
 
 footer {
