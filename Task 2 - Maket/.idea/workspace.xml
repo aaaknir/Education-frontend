@@ -2,9 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b7308d4f-d247-4c4a-a835-b61494011aac" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../Task 2 - Geekbrains/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Task 2 - Geekbrains/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Task 2 - Geekbrains/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Task 2 - Geekbrains/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -28,12 +28,6 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="940" />
-    <option name="y" value="25" />
-    <option name="width" value="426" />
-    <option name="height" value="687" />
-  </component>
   <component name="ProjectId" id="1ONLm2eLjHvBeeSroOFV6hEb51Q" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="PropertiesComponent">
@@ -41,7 +35,7 @@
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Task 2 - Geekbrains" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -80,7 +74,8 @@
       <workItem from="1563627312980" duration="8279000" />
       <workItem from="1563636689721" duration="1465000" />
       <workItem from="1563776240244" duration="9224000" />
-      <workItem from="1563813283217" duration="523000" />
+      <workItem from="1563813283217" duration="680000" />
+      <workItem from="1563814220362" duration="830000" />
     </task>
     <servers />
   </component>
@@ -92,7 +87,9 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>
