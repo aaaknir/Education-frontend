@@ -1,32 +1,49 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru"> <!-- Русский язык же :) -->
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <link rel="stylesheet" type="text/css" href="css/style.css"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> <!-- `/` slash can be missed in HTML5 -->
+    <link rel="stylesheet" type="text/css" href="css/style.css">
     <link rel="shortcut icon" href="img/book.ico" type="image/x-icon">
     <title>Книжный интернет-магазин "Нигде не купишь"</title>
+    <style>
+        h2 {
+            /* Обычно у заголовков есть отступ снизу */
+            margin-bottom: 20px;
+        }
+        header {
+            border-bottom: 1px solid #aaa;
+        }
+        footer {
+            border-top: 1px solid #aaa;
+        }
+         header a, header a:hover {
+            background: none;
+            border: none;
+            border-radius: 0;
+            box-shadow: none;
+        }
+    </style>
 </head>
 <body>
     <div class="container">
-    <header>
-        <img src="img/logo.png" alt="Логотип сайта" title="Логотип магазина" />
-        <div class="menu_a">
-            <a href="index.html">Главная</a>
-            <a href="catalog/catalog.html">Каталог</a>
-            <a href="pages/contact.html">Контакты</a>
-        </div>
-        <hr/>
-    </header>
-
-    <article>
-        <h2 class="h_center">Книжный интернет-магазин "Нигде не купишь"</h2>
-        <br/><span>Добро пожаловать! Вы попали в книжный интернет-магазин "Нигде не купишь". На сайте присутствует широкий ассортимент литературы, поэтому надеемся, что вы сможете найти книгу по душе.</span>
-    </article>
-
-    <footer>
-        <hr />
-        <span>&copy; Все права защищены</span>
-    </footer>
+        <header> <!-- Every inner code should be from next TAB (не хватает таба) -->
+            <a href="index.html"><!-- Logo is often a link to an index page --><img src="img/logo.png" alt="Логотип сайта" title="Логотип магазина" ></a>
+            <div class="menu_a">
+                <a href="index.html">Главная</a>
+                <a href="catalog/catalog.html">Каталог</a>
+                <a href="pages/contact.html">Контакты</a>
+            </div>
+            <!-- Instead of hr use CSS border, if you can -->
+        </header>
+        <!-- No spaces in html code instead of comments -->
+        <article>
+            <h2 class="h_center">Книжный интернет-магазин "Нигде не купишь"</h2>
+            <!-- Instead of <br>, use CSS margin or padding --><span>Добро пожаловать! Вы попали в книжный интернет-магазин "Нигде не купишь". На сайте присутствует широкий ассортимент литературы, поэтому надеемся, что вы сможете найти книгу по душе.</span>
+        </article>
+        <footer>
+            <!-- Instead of hr use CSS border, if you can -->
+            <span>&copy; Все права защищены</span>
+        </footer>
     </div>
 </body>
 </html>
