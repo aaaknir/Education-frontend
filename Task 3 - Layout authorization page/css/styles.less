@@ -1,57 +1,31 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
 
+/*
+
+1. Use Figma palette
+2. Less variables should be predictably repeatable. Do not use CSS variables for all data
+3. Default color for text input's default state is better
+4. Lines under inputs became bolder than at Figma, so it should be fixed up
+5. Use en than ru comments to prevent encoding troubles
+
+*/
+
 // Цвет
-@background-color: #E5E5E5; //цвет фона
-@container-background-color: white; //цвет фона контейнера
-@text-color-normal: #CDCDCD; //цвет текста обычный
-@text-color-error: #D51A1A; // цвет текста ошибки
-@input-focus: #E9E9E9;
-@line-color: #000000;
-@button-background-color: #2A8BE4;
-@button-font-color: white;
-@button-border-color: #6FB3F2; //button:hover, button:active
+@color-contrast: #0050B2;
+@color-interactive: #1b82e3;
+@color-interactive-light: #62a4e3;
+@color-interactive-dark: #1b82e3;
+@color-accent: #D51A1A;
+@color-headers: #000000;
+@color-text: #333333;
 
 // Шрифт
-@font: 'Roboto', sans-serif; //стиль шрифта на странице
-@container-input-font-size: 15px;
-@container-input-line-height: 18px;
-@button-font-size: 15px;
-@button-line-height: 18px;
-@wrong-font-style: normal;
-@wrong-font-weight: normal;
-@wrong-font-size: 12px;
-@wrong-line-height: 14px;
-
-// Расположение и размер
-@container-width: 347px;
-@container-height: 354px;
-@container-margin: 185px auto 485px;
-@container-border-radius: 37px;
-@container-img-width: 69px;
-@container-img-height: 79px;
-@container-img-margin: 50px 139px 29px 139px;
-@container-input-width: 177px;
-@container-input-height: 18px;
-@line-width: 177px;
-@line-border: 1px solid;
-@line-margin: 9px 85px 19px 85px;
-@line-opacity: 1;
-@button-width: 89px;
-@button-height: 30px;
-@button-change-width: 93px; //hover, active
-@button-change-height: 34px; //hover, active
-@button-change-border: 2px solid; //hover, active
-@button-change-box-sizing: border-box; //hover, active
-@wrong-width: 208px;
-@wrong-height: 15px;
-@wrong-margin: 19px 69px 30px 69px;
-
-// Границы
-@container-input-border: 1px solid transparent;
+@font-text: 'Roboto', sans-serif; //стиль шрифта на странице
 
 * {
   margin: 0;
   padding: 0;
+  border: 0;
 }
 
 html, body {
@@ -59,82 +33,90 @@ html, body {
 }
 
 body {
-  background: @background-color;
-  font-family: @font;
+  background-color: #F5F5F7;
+  font-family: @font-text;
 }
 
 .container {
-  width: @container-width;
-  height: @container-height;
-  margin: @container-margin;
-  background: @container-background-color;
-  border-radius: @container-border-radius;
+  width: 347px;
+  height: 354px;
+  margin: 185px auto 485px;
+  background-color: #FFFFFF;
+  border-radius: 37px;
   text-align: center;
 }
 
 .container img {
-  width: @container-img-width;
-  height: @container-img-height;
-  margin: @container-img-margin;
+  width: 69px;
+  height: 79px;
+  margin: 50px 139px 29px 139px;
 }
 
 .container input {
   text-align: center;
-  width: @container-input-width;
-  height: @container-input-height;
+  width: 177px;
+  height: 18px;
   font-style: normal;
   font-weight: normal;
-  font-size: @container-input-font-size;
-  line-height: @container-input-line-height;
-  color: @text-color-normal;
+  font-size: 15px;
+  line-height: 18px;
   outline: none;
-  border: @container-input-border;
+  border: 1px solid transparent;
 }
 
-.container input.placeholder-error::placeholder, .container div#line_login.placeholder-error, .container div#line_password.placeholder-error {
-  color: @text-color-error;
-  border-color: @text-color-error;
+.container input.placeholder-error::placeholder {
+  color: @color-accent;
 }
 
-.container input:focus {
-  color: @input-focus;
+.container input:focus::placeholder {
+  color: #E9E9E9;
+}
+
+.container input::placeholder {
+  color: #CDCDCD;
 }
 
 .container div#line_login, .container div#line_password {
-  width: @line-width;
-  border: @line-border @line-color;
-  margin: @line-margin;
-  opacity: @line-opacity;
+  width: 177px;
+  border-top: 1px solid #000000;
+  margin: 9px 85px 19px 85px;
+  opacity: 0.7;
+}
+
+.container div#line_login.placeholder-error, .container div#line_password.placeholder-error {
+  border-color: @color-accent;
 }
 
 .container button[type=submit]{
-  width: @button-width;
-  height: @button-height;
-  background: @button-background-color;
+  width: 89px;
+  height: 30px;
+  background-color: @color-interactive;
   font-style: normal;
   font-weight: normal;
-  font-size: @button-font-size;
-  line-height: @button-line-height;
-  color: @button-font-color;
+  font-size: 15px;
+  line-height: 18px;
+  color: #FFFFFF;
   outline: none;
 }
 
-.container button[type=submit]:hover, .container button[type=submit]:active  {
-  width: @button-change-width;
-  height: @button-change-height;
-  border: @button-change-border @button-border-color;
-  box-sizing: @button-change-box-sizing;
+.container button[type=submit]:hover  {
+  box-sizing: border-box;
+  background-color: @color-interactive-light;
+  cursor: pointer;
+}
+.container button[type=submit]:active {
+  background-color: @color-interactive-dark;
 }
 
 .container div#wrong {
   visibility: hidden;
-  width: @wrong-width;
-  height: @wrong-height;
-  margin: @wrong-margin;
+  width: 208px;
+  height: 15px;
+  margin: 19px 69px 30px 69px;
   text-align: center;
-  font-style: @wrong-font-style;
-  font-weight: @wrong-font-weight;
-  font-size: @wrong-font-size;
-  line-height: @wrong-line-height;
-  color: @text-color-error;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 14px;
+  color: @color-accent;
 }
