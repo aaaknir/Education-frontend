@@ -1,8 +1,7 @@
 function submitClick() {
     if (!document.getElementById("login").value && !document.getElementById("password").value) {
         document.getElementById("wrong").innerHTML = "Введите логин и пароль";
-        document.getElementById("login").style.color ="#D51A1A";
-        document.getElementById("password").style.color = "#D51A1A";
+        document.getElementsByClassName("login")[0].value.style.color = "#D51A1A";
         document.getElementById("line_password").style.borderColor = "#D51A1A";
         document.getElementById("line_login").style.borderColor = "#D51A1A";
         document.getElementById("wrong").style.visibility = "visible";
