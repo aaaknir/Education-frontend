@@ -46,7 +46,11 @@ body {
     color: #E9E9E9;
 }
 
-.container div.line {
+.container input::placeholder {
+    color: #CDCDCD;
+}
+
+.container div#line_login, .container div#line_password {
     width: 177px;
     border: 1px solid #000000;
     margin: 9px 85px 19px 85px;
@@ -70,4 +74,17 @@ body {
     height: 34px;
     border: 2px solid #6FB3F2;
     box-sizing: border-box;
+}
+
+.container div#wrong {
+    visibility: hidden;
+    width: 208px;
+    height: 15px;
+    margin: 19px 69px 30px 69px;
+    text-align: center;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 14px;
+    color: #D51A1A;
 }
