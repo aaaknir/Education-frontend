@@ -1,16 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
 
-/*
-
-1. Use Figma palette
-2. Less variables should be predictably repeatable. Do not use CSS variables for all data
-3. Default color for text input's default state is better
-4. Lines under inputs became bolder than at Figma, so it should be fixed up
-5. Use en than ru comments to prevent encoding troubles
-
-*/
-
-// Цвет
+// Color style
 @color-contrast: #0050B2;
 @color-interactive: #1b82e3;
 @color-interactive-light: #62a4e3;
@@ -19,8 +9,8 @@
 @color-headers: #000000;
 @color-text: #333333;
 
-// Шрифт
-@font-text: 'Roboto', sans-serif; //стиль шрифта на странице
+// Font style
+@font-text: 'Roboto', sans-serif; //font style for page
 
 * {
   margin: 0;
@@ -76,18 +66,18 @@ body {
   color: #CDCDCD;
 }
 
-.container div#line_login, .container div#line_password {
+.container div#login_line, .container div#password_line {
   width: 177px;
   border-top: 1px solid #000000;
   margin: 9px 85px 19px 85px;
   opacity: 0.7;
 }
 
-.container div#line_login.placeholder-error, .container div#line_password.placeholder-error {
+.container div#login_line.placeholder-error, .container div#password_line.placeholder-error {
   border-color: @color-accent;
 }
 
-.container button[type=submit]{
+.container button[type=submit] {
   width: 89px;
   height: 30px;
   background-color: @color-interactive;
@@ -99,7 +89,7 @@ body {
   outline: none;
 }
 
-.container button[type=submit]:hover  {
+.container button[type=submit]:hover {
   box-sizing: border-box;
   background-color: @color-interactive-light;
   cursor: pointer;
