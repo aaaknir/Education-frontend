@@ -13,11 +13,11 @@
 <body>
 <div class="container">
     <img src="img/logo.png" alt="Логотип Профкома ВМК МГУ">
-    <input name="login" id="login" type="text" placeholder="Логин" required>
+    <input onclick="correct()" name="login" id="login" type="text" placeholder="Логин" required>
     <div id="line_login"></div>
-    <input name="password" id="password" type="password" placeholder="Пароль" required>
+    <input onclick="correct()" name="password" id="password" type="password" placeholder="Пароль" required>
     <div id="line_password"></div>
-    <button type="submit" value="Войти">Войти</button>
+    <button onclick="submitClick()" type="submit" value="Войти">Войти</button>
     <div id="wrong">Нет</div>
 </div>
 </body>
