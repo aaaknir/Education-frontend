@@ -14,12 +14,18 @@
 // Шрифт
 @font: "FuturaBookC", sans-serif;
 @body-font-size: 1.4em;
+@fio-font-size: 1.3em;
+@fio-font-weight: bolder;
+@work-letter-font-stretch: semi-expanded;
+@work-letter-font-style: oblique;
+@hobby-font-style: italic;
 
 //Расположение и размер
 @change-margin: 100px; //для блока внесения изменений
 @change-work-margin: 100px; //для блока внесения изменений
 @change-padding: 50px; //для блока внесения изменений
 @change-border-radius: 30px; //для блока внесения изменений
+@change-margin-left: 20px;
 @input-width: 100%;
 @input-height: 40px;
 @input-padding: 12px 20px;
@@ -69,6 +75,14 @@
 @right-display: block; // для правой колонки
 @right-padding: 20px; // для правой колонки
 @right-float: right; // для правой колонки
+@right-img-change-cursor: pointer; // изображение для кнопки изменить
+@right-img-change-opacity: 0.2; // изображение для кнопки изменить
+@right-img-change-opacity-hover: 1; // изображение для кнопки изменить при наведении
+@input-field-padding: 5px;
+@input-field-border: 2px solid;
+@input-field-border-radius: 5px;
+@input-button-float:right;
+@input-button-margin: 5px;
 
 * {
   padding: 0;
@@ -215,35 +229,31 @@ article {
 }
 
 .img  {
-  cursor: pointer;
-  opacity: 0.2;
+  cursor: @right-img-change-cursor;
+  opacity: @right-img-change-opacity;
 }
 
 .img:hover {
-  cursor: pointer;
-  opacity: 1;
+  opacity: @right-img-change-opacity-hover;
 }
 
 #fio {
-  font-size: 1.3em;
-  font-weight: bolder;
+  font-size: @fio-font-size;
+  font-weight: @fio-font-weight;
   color: @color-fio;
 }
 
-#hobby, #work {
-  margin-left: 20px;
-}
-#hobby_letter, #work_letter {
-  margin-left: 20px;
+#hobby, #work, #hobby_letter, #work_letter {
+  margin-left: @change-margin-left;
 }
 
 #work_letter {
-  font-stretch: semi-expanded;
-  font-style: oblique;
+  font-stretch: @work-letter-font-stretch;
+  font-style: @work-letter-font-style;
 }
 
 #hobby pre {
-  font-style: italic;
+  font-style: @hobby-font-style;
 }
 
 input, textarea:focus {
@@ -253,14 +263,14 @@ input, textarea:focus {
 }
 
 input[type=text], textarea, select, fieldset {
-  padding:5px;
-  border:2px solid @color-border-input;
-  border-radius: 5px;
+  padding: @input-field-padding;
+  border: @input-field-border @color-border-input;
+  border-radius: @input-field-border-radius;
 }
 
 input[type=submit], input[type=button] {
-  float:right;
-  margin: 5px;
+  float: @input-button-float;
+  margin: @input-button-margin;
 }
 
 select {
