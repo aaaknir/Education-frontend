@@ -8,7 +8,6 @@
     <meta name="keywords" content="Профком ВМК, Страница авторизации активиста">
     <meta name="description" content="Это страничка авторизации активиста Профкома ВМК МГУ">
 
-    <!--<link href="css/style.css" rel="stylesheet" type="text/css">-->
     <link href="img/icon.png" rel="shortcut icon" type="image/x-icon" />
     <link rel="stylesheet/less" type="text/css" href="css/styles.less">
 
@@ -18,13 +17,14 @@
     <!-- Tab after <body> tag -->
     <div class="container">
         <!-- Use <form> tag for forms -->
-        <form>
+        <form id="auth" onsubmit="return submitForm()">
+            <!-- If you use JS form validation, `required` attribute may cause troubles -->
             <img src="img/logo.png" alt="Логотип Профкома ВМК МГУ">
-            <input onclick="correct()" name="login" id="login" type="text" placeholder="Логин" required>
+            <input onclick="resetFormState()" name="login" id="login" type="text" placeholder="Логин">
             <div id="line_login"></div>
-            <input onclick="correct()" name="password" id="password" type="password" placeholder="Пароль" required>
+            <input onclick="resetFormState()" name="password" id="password" type="password" placeholder="Пароль">
             <div id="line_password"></div>
-            <button onclick="submitClick()" type="submit" value="Войти">Войти</button>
+            <button type="submit" value="Войти">Войти</button>
             <div id="wrong">Нет</div>
         </form>
     </div>
