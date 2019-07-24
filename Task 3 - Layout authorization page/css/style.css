@@ -42,6 +42,10 @@ body {
     border: 1px solid transparent;
 }
 
+.container input.placeholder-error::placeholder {
+    color: #D51A1A;
+}
+
 .container input:focus {
     color: #E9E9E9;
 }

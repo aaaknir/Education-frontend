@@ -1,0 +1,140 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+
+// Цвет
+@background-color: #E5E5E5; //цвет фона
+@container-background-color: white; //цвет фона контейнера
+@text-color-normal: #CDCDCD; //цвет текста обычный
+@text-color-error: #D51A1A; // цвет текста ошибки
+@input-focus: #E9E9E9;
+@line-color: #000000;
+@button-background-color: #2A8BE4;
+@button-font-color: white;
+@button-border-color: #6FB3F2; //button:hover, button:active
+
+// Шрифт
+@font: 'Roboto', sans-serif; //стиль шрифта на странице
+@container-input-font-size: 15px;
+@container-input-line-height: 18px;
+@button-font-size: 15px;
+@button-line-height: 18px;
+@wrong-font-style: normal;
+@wrong-font-weight: normal;
+@wrong-font-size: 12px;
+@wrong-line-height: 14px;
+
+// Расположение и размер
+@container-width: 347px;
+@container-height: 354px;
+@container-margin: 185px auto 485px;
+@container-border-radius: 37px;
+@container-img-width: 69px;
+@container-img-height: 79px;
+@container-img-margin: 50px 139px 29px 139px;
+@container-input-width: 177px;
+@container-input-height: 18px;
+@line-width: 177px;
+@line-border: 1px solid;
+@line-margin: 9px 85px 19px 85px;
+@line-opacity: 1;
+@button-width: 89px;
+@button-height: 30px;
+@button-change-width: 93px; //hover, active
+@button-change-height: 34px; //hover, active
+@button-change-border: 2px solid; //hover, active
+@button-change-box-sizing: border-box; //hover, active
+@wrong-width: 208px;
+@wrong-height: 15px;
+@wrong-margin: 19px 69px 30px 69px;
+
+// Границы
+@container-input-border: 1px solid transparent;
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  min-height: 100%;
+}
+
+body {
+  background: @background-color;
+  font-family: @font;
+}
+
+.container {
+  width: @container-width;
+  height: @container-height;
+  margin: @container-margin;
+  background: @container-background-color;
+  border-radius: @container-border-radius;
+  text-align: center;
+}
+
+.container img {
+  width: @container-img-width;
+  height: @container-img-height;
+  margin: @container-img-margin;
+}
+
+.container input {
+  text-align: center;
+  width: @container-input-width;
+  height: @container-input-height;
+  font-style: normal;
+  font-weight: normal;
+  font-size: @container-input-font-size;
+  line-height: @container-input-line-height;
+  color: @text-color-normal;
+  outline: none;
+  border: @container-input-border;
+}
+
+.container input.placeholder-error::placeholder, .container div#line_login.placeholder-error, .container div#line_password.placeholder-error {
+  color: @text-color-error;
+  border-color: @text-color-error;
+}
+
+.container input:focus {
+  color: @input-focus;
+}
+
+.container div#line_login, .container div#line_password {
+  width: @line-width;
+  border: @line-border @line-color;
+  margin: @line-margin;
+  opacity: @line-opacity;
+}
+
+.container button[type=submit]{
+  width: @button-width;
+  height: @button-height;
+  background: @button-background-color;
+  font-style: normal;
+  font-weight: normal;
+  font-size: @button-font-size;
+  line-height: @button-line-height;
+  color: @button-font-color;
+  outline: none;
+}
+
+.container button[type=submit]:hover, .container button[type=submit]:active  {
+  width: @button-change-width;
+  height: @button-change-height;
+  border: @button-change-border @button-border-color;
+  box-sizing: @button-change-box-sizing;
+}
+
+.container div#wrong {
+  visibility: hidden;
+  width: @wrong-width;
+  height: @wrong-height;
+  margin: @wrong-margin;
+  text-align: center;
+  font-style: @wrong-font-style;
+  font-weight: @wrong-font-weight;
+  font-size: @wrong-font-size;
+  line-height: @wrong-line-height;
+  color: @text-color-error;
+}
