@@ -17,7 +17,7 @@ function submitClick() {
         document.getElementById("line_password").style.borderColor = "#D51A1A";
         document.getElementById("wrong").style.visibility = "visible";
     } else if (document.getElementById("login").value == "kate" && document.getElementById("password").value == "123") {
-        window.location.href = "./'Task 1 - User Page'/index.html";
+        window.location.href = "../Task 1 - User Page/index.html";
     } else {
         document.getElementById("wrong").innerHTML = "Неправильный логин/пароль";
         document.getElementById("wrong").style.visibility = "visible";
