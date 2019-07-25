@@ -18,84 +18,86 @@
     <div class="change">
 
         <!-- Profile photo Change-->
-        <div id="photo_change">
-            <label><input type="text" name="photo" placeholder="Введите URL изображения" form="account_page"><br/></label>
-            <button onclick="savePhoto(0)" class="btn btn-primary" name="cancel" value="Отмена">Отмена</button>
-            <button onclick="savePhoto(1)" class="btn btn-primary" name="done" value="Сохранить">Сохранить</button>
+        <div id="photo_change" class="form-group">
+            <label><input class="form-control" type="text" name="photo" placeholder="Введите URL изображения" form="account_page"></label>
+            <br/><button onclick="savePhoto(0)" class="btn btn-info" name="cancel" value="Отмена">Отмена</button>
+            <button onclick="savePhoto(1)" class="btn btn-success" name="done" value="Сохранить">Сохранить</button>
         </div>
 
         <!-- Status Info Change-->
-        <div id="status_change">
-            <label><input type="text" name="status" placeholder="Введите статус" form="account_page"><br/></label>
-            <button onclick="saveStatus(0)" class="btn btn-primary" name="cancel" value="Отмена">Отмена</button>
-            <button onclick="saveStatus(1)" class="btn btn-primary" name="done" value="Сохранить">Сохранить</button>
+        <div id="status_change" class="form-group">
+            <label><input class="form-control" type="text" name="status" placeholder="Введите статус" form="account_page"></label>
+            <br/><button onclick="saveStatus(0)" class="btn btn-info" name="cancel" value="Отмена">Отмена</button>
+            <button onclick="saveStatus(1)" class="btn btn-success" name="done" value="Сохранить">Сохранить</button>
         </div>
 
         <!-- FIO Info Change-->
-        <div id="fio_change">
+        <div id="fio_change" class="form-group">
             <label>Фамилия:
-                <input type="text" id="surname" name="surname" placeholder="Введите фамилию" form="account_page">
-            </label><br/>
+                <input class="form-control" type="text" id="surname" name="surname" placeholder="Введите фамилию" form="account_page">
+            </label>
             <label>Имя:
-                <input type="text" id="name" name="name" placeholder="Введите имя" form="account_page">
-            </label><br/>
+                <input class="form-control" type="text" id="name" name="name" placeholder="Введите имя" form="account_page">
+            </label>
             <label>Отчество:
-                <input type="text" id="second_name" name="second_name" placeholder="Введите отчетсво" form="account_page">
-            </label><br/>
-            <button onclick="saveFio(0)" class="btn btn-primary" name="cancel" value="Отмена">Отмена</button>
-            <button onclick="saveFio(1)" class="btn btn-primary" name="done" value="Сохранить">Сохранить</button>
+                <input class="form-control" type="text" id="second_name" name="second_name" placeholder="Введите отчетсво" form="account_page">
+            </label>
+            <br/><button onclick="saveFio(0)" class="btn btn-info" name="cancel" value="Отмена">Отмена</button>
+            <button onclick="saveFio(1)" class="btn btn-success" name="done" value="Сохранить">Сохранить</button>
         </div>
 
         <!-- Birthday Info Change-->
-        <div id="birthday_change">
+        <div id="birthday_change" class="form-group">
             <label>Дата рождения:
-                <input type="date" name="birthday_date" form="account_page">
-                <button onclick="saveBirthdayDate(0)" class="btn btn-primary" name="cancel" value="Отмена">Отмена</button>
-                <button onclick="saveBirthdayDate(1)" class="btn btn-primary" name="done" value="Сохранить">Сохранить</button>
+                <input class="form-control" type="date" name="birthday_date" form="account_page">
+                <br/><button onclick="saveBirthdayDate(0)" class="btn btn-info" name="cancel" value="Отмена">Отмена</button>
+                <button onclick="saveBirthdayDate(1)" class="btn btn-success" name="done" value="Сохранить">Сохранить</button>
             </label>
         </div>
 
         <!-- Block type Info Change -->
-        <div id="block_change">
-            <label>Блок:<br/>
-                <input type="checkbox" id="it" name="block" value="IT" form="account_page"><label for="it"> IT</label>
-                <input type="checkbox" id="u" name="block" value="Улучшение рабочей среды" form="account_page"><label for="u"> Улучшение рабочей среды</label>
-                <input type="checkbox" id="r" name="block" value="Работа в ДСЛ" form="account_page"><label for="r"> Работа в ДСЛ</label><br/><br/>
-                <input type="checkbox" id="p" name="block" value="Профорги" form="account_page"><label for="p"> Профорги</label>
-                <input type="checkbox" id="z" name="block" value="Закупки" form="account_page"><label for="z"> Закупки</label>
-                <input type="checkbox" id="sp" name="block" value="Спонсоры" form="account_page"><label for="sp"> Спонсоры</label>
-                <input type="checkbox" id="i" name="block" value="Информирование" form="account_page"><label for="i"> Информирование</label><br/><br/>
-                <input type="checkbox" id="t" name="block" value="Техники" form="account_page"><label for="t"> Техники</label>
-                <input type="checkbox" id="m" name="block" value="Медиа" form="account_page"><label for="m"> Медиа</label>
-                <input type="checkbox" id="d" name="block" value="Дизайн" form="account_page"><label for="d"> Дизайн</label>
-                <input type="checkbox" id="sk" name="block" value="Склад" form="account_page"><label for="sk"> Склад</label><br/><br/>
-                <input type="checkbox" id="mp" name="block" value="Мат.помощь" form="account_page"><label for="mp"> Мат.помощь</label>
-                <input type="checkbox" id="x" name="block" value="Хозяюшки" form="account_page"><label for="x"> Хозяюшки</label>
-                <input type="checkbox" id="dk" name="block" value="Декораторы" form="account_page"><label for="dk"> Декораторы</label>
-                <input type="checkbox" id="b" name="block" value="БДНС" form="account_page"><label for="b"> БДНС</label><br/><br/>
-                <input type="checkbox" id="st" name="block" value="Спорт" form="account_page"><label for="st"> Спорт</label>
-                <input type="checkbox" id="do" name="block" value="Досуг" form="account_page"><label for="do"> Досуг</label>
-                <input type="checkbox" id="kp" name="block" value="КП" form="account_page"><label for="kp"> КП</label>
-                <input type="checkbox" id="s" name="block" value="Сценаристы" form="account_page"><label for="s"> Сценаристы</label><br/><br/>
+        <div id="block_change" class="form-group">
+            <label><span class="header_account">Блок(и):</span>
+                <div>
+                    <input type="checkbox" id="it" name="block" value="IT" form="account_page"><label class="choose_block" for="it"> IT</label>
+                    <input type="checkbox" id="u" name="block" value="Улучшение рабочей среды" form="account_page"><label class="choose_block" for="u"> Улучшение рабочей среды</label>
+                    <input type="checkbox" id="r" name="block" value="Работа в ДСЛ" form="account_page"><label class="choose_block" for="r"> Работа в ДСЛ</label>
+                    <input type="checkbox" id="p" name="block" value="Профорги" form="account_page"><label class="choose_block" for="p"> Профорги</label>
+                    <input type="checkbox" id="z" name="block" value="Закупки" form="account_page"><label class="choose_block" for="z"> Закупки</label>
+                    <input type="checkbox" id="sp" name="block" value="Спонсоры" form="account_page"><label class="choose_block" for="sp"> Спонсоры</label>
+                    <input type="checkbox" id="i" name="block" value="Информирование" form="account_page"><label class="choose_block" for="i"> Информирование</label>
+                    <input type="checkbox" id="t" name="block" value="Техники" form="account_page"><label class="choose_block" for="t"> Техники</label>
+                    <input type="checkbox" id="m" name="block" value="Медиа" form="account_page"><label class="choose_block" for="m"> Медиа</label>
+                    <input type="checkbox" id="d" name="block" value="Дизайн" form="account_page"><label class="choose_block" for="d"> Дизайн</label>
+                    <input type="checkbox" id="sk" name="block" value="Склад" form="account_page"><label class="choose_block" for="sk"> Склад</label>
+                    <input type="checkbox" id="mp" name="block" value="Мат.помощь" form="account_page"><label class="choose_block" for="mp"> Мат.помощь</label>
+                    <input type="checkbox" id="x" name="block" value="Хозяюшки" form="account_page"><label class="choose_block" for="x"> Хозяюшки</label>
+                    <input type="checkbox" id="dk" name="block" value="Декораторы" form="account_page"><label class="choose_block" for="dk"> Декораторы</label>
+                    <input type="checkbox" id="b" name="block" value="БДНС" form="account_page"><label class="choose_block" for="b"> БДНС</label>
+                    <input type="checkbox" id="st" name="block" value="Спорт" form="account_page"><label class="choose_block" for="st"> Спорт</label>
+                    <input type="checkbox" id="do" name="block" value="Досуг" form="account_page"><label class="choose_block" for="do"> Досуг</label>
+                    <input type="checkbox" id="kp" name="block" value="КП" form="account_page"><label class="choose_block" for="kp"> КП</label>
+                    <input type="checkbox" id="s" name="block" value="Сценаристы" form="account_page"><label class="choose_block" for="s"> Сценаристы</label>
+                </div>
             </label>
-            <button onclick="saveBlock(0)" class="btn btn-primary" name="cancel" value="Отмена">Отмена</button>
-            <button onclick="saveBlock(1)" class="btn btn-primary" name="done" value="Сохранить">Сохранить</button>
+            <br/><button onclick="saveBlock(0)" class="btn btn-info" name="cancel" value="Отмена">Отмена</button>
+            <button onclick="saveBlock(1)" class="btn btn-success" name="done" value="Сохранить">Сохранить</button>
         </div>
 
         <!-- Hobby Info Change -->
-        <div id="hobby_change">
+        <div id="hobby_change" class="form-group">
             <label>Увлечения:
-                <textarea name="hobby" placeholder="Мои увлечения" wrap="hard" form="account_page"></textarea>
-            </label> <br/>
-            <button onclick="saveHobby(0)" class="btn btn-primary" name="cancel" value="Отмена">Отмена</button>
-            <button onclick="saveHobby(1)" class="btn btn-primary" name="done" value="Сохранить">Сохранить</button>
+                <textarea class="form-control" name="hobby" placeholder="Мои увлечения" wrap="hard" form="account_page"></textarea>
+            </label>
+            <br/><button onclick="saveHobby(0)" class="btn btn-info" name="cancel" value="Отмена">Отмена</button>
+            <button onclick="saveHobby(1)" class="btn btn-success" name="done" value="Сохранить">Сохранить</button>
         </div>
 
         <!-- Vk Upload -->
-        <div id="vk_upload">
-            <label><input type="text" name="photo" placeholder="Введите URL страницы Вконтакте" form="account_page"><br/></label>
-            <button onclick="saveFromVk(0)" class="btn btn-primary" name="cancel" value="Отмена">Отмена</button>
-            <button onclick="saveFromVk(1)" class="btn btn-primary" name="done" value="Сохранить">Сохранить</button>
+        <div id="vk_upload" class="form-group">
+            <label><input class="form-control" type="text" name="photo" placeholder="Введите URL страницы Вконтакте" form="account_page"></label>
+            <br/><button onclick="saveFromVk(0)" class="btn btn-info" name="cancel" value="Отмена">Отмена</button>
+            <button onclick="saveFromVk(1)" class="btn btn-success" name="done" value="Сохранить">Сохранить</button>
         </div>
     </div>
 
@@ -112,7 +114,7 @@
 
             <!-- Status Info -->
             <div id="status">
-                <span>&#8222;<span onclick="changeStatus()" title="Нажмите для изменения статуса" id="status_quote">Вперед к победе!</span>&#8221;</span>
+                <span>&#8222;<span onclick="changeStatus()" title="Нажмите для изменения статуса" id="status_quote">Я зол постоянно!</span>&#8221;</span>
             </div>
         </div>
 
@@ -121,14 +123,14 @@
 
             <!-- FIO Info -->
             <div id="fio">
-                <span id="fio_letter">Петрусова Екатерина Дмитриевна</span>
+                <span id="fio_letter">Роберт Брюс Бэннер</span>
                 <img onclick="changeFio()" title="Изменить Ф.И.О." alt="Изменить Ф.И.О." src="img/change.png" class="img">
             </div>
 
             <!-- Birthday Info -->
             <div id="birthday">
                 <img src="img/dr.png" id="birthday_img" alt="image">
-                <span id="dr_letter"> 02.10.99 </span>
+                <span id="dr_letter"> 01.05.62 </span>
                 <img onclick="changeBirthdayDate()" title="Изменить дату рождения" alt="Изменить дату рождения" src="img/change.png" class="img">
             </div>
 
@@ -140,20 +142,21 @@
                         <!-- Block type Info -->
                         <div id="block">
                             <span class="header_account">Блок <img onclick="changeBlock()" title="Изменить блоки" alt="Изменить блоки" src="img/change.png" class="img"><br/>
-                                <span id="block_letter">Информирование, IT, Досуг</span>
+                                <span id="block_letter">IT, Досуг</span>
                             </span>
                         </div>
 
                         <!-- Hobby Info -->
                         <div id="hobby">
                              <span class="header_account">Увлечения <img onclick="changeHobby()" title="Изменить увлечения" alt="Изменить увлечения" src="img/change.png" class="img"><br/>
-                                 <span id="hobby_letter">Чтение художественной литературы, путешествия</span>
+                                 <span id="hobby_letter">Спасение мира</span>
                              </span>
                         </div>
                 </fieldset>
             </div>
             <input onclick="uploadFromVk()" type="button" class="btn btn-outline-success" name="vk" value="Загрузить с ВКонтакте" form="account_page">
-           </div>
+            <input onclick="setDefault()" type="button" class="btn btn-outline-dark" name="vk" value="Сбросить" form="account_page">
+        </div>
     </article>
 
     <!-- Other blocks -->

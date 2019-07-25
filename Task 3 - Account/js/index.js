@@ -2,6 +2,12 @@
 
 // Settings
 const urlForUploadVkInfo = "html/vk.html";
+const defaultPhoto = "img/default.png";
+const defaultStatus = 'Я зол постоянно!';
+const defaultFio = 'Роберт Брюс Бэннер';
+const defaultBirthdayDate = '01.05.62';
+const defaultBlock = 'IT, Досуг';
+const defaultHobby = 'Спасение мира';
 // Elements
 const elBody = document.querySelector("body");
 const elArticle = document.querySelector("article");
@@ -9,7 +15,6 @@ const elHeader = document.querySelector("header");
 const elPhoto = document.querySelector("article div.left div#photo #image");
 const elPhotoChange = document.querySelector("div.change div#photo_change");
 const elPhotoFromForm = document.querySelector("div.change div#photo_change input");
-const elStatusBlock = document.querySelector("article div.left div#status");
 const elStatus = document.querySelector("article div.left div#status span#status_quote");
 const elStatusChange = document.querySelector("div.change div#status_change");
 const elStatusFromForm = document.querySelector("div.change div#status_change input");
@@ -30,6 +35,19 @@ const elVkUpload = document.querySelector("div.change div#vk_upload");
 // Classes
 const clBodyBackground = 'change_color';
 // Functions
+function setDefault() {
+    elPhoto.src = defaultPhoto;
+    elStatus.innerHTML = defaultStatus;
+    elFio.innerHTML = defaultFio;
+    elBirthdayDate.innerHTML = defaultBirthdayDate;
+    elBlock.innerHTML = defaultBlock;
+    elHobby.innerHTML = defaultHobby;
+}
+
+function capitalize(s) {
+    return s.charAt(0).toUpperCase() + s.slice(1);
+}
+
 function displayOn () {
     elArticle.style.display = "grid";
     elHeader.style.display = "block";
@@ -62,7 +80,7 @@ function changeStatus () {
 
 function saveStatus (i) {
     if (i) {
-        elStatus.innerHTML = elStatusFromForm.value;
+        elStatus.innerHTML = capitalize(elStatusFromForm.value);
     }
     elStatusChange.style.display = "none";
     displayOn();
@@ -75,7 +93,7 @@ function changeFio () {
 
 function saveFio (i) {
     if (i) {
-        elFio.innerHTML = elSurnameFromForm.value + " " + elNameFromForm.value + " " + elSecondNameFromForm.value;
+        elFio.innerHTML = capitalize(elSurnameFromForm.value) + " " + capitalize(elNameFromForm.value) + " " + capitalize(elSecondNameFromForm.value);
     }
     elFioChange.style.display = "none";
     displayOn();
@@ -129,7 +147,7 @@ function changeHobby () {
 
 function saveHobby (i) {
     if (i) {
-        elHobby.innerHTML = elHobbyFromForm.value;
+        elHobby.innerHTML = capitalize(elHobbyFromForm.value);
     }
     elHobbyChange.style.display = "none";
     displayOn();
