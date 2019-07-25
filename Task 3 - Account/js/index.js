@@ -1,122 +1,170 @@
-function display_on () {
-    document.getElementById("mainArticle").style.display = "grid";
-    document.getElementById("pageHeader").style.display = "block";
+// Account Page
+
+// Settings
+const urlForUploadVkInfo = "html/vk.html";
+// Elements
+const elBody = document.querySelector("body");
+const elArticle = document.querySelector("article");
+const elHeader = document.querySelector("header");
+const elPhoto = document.querySelector("article div.left div#photo #image");
+const elPhotoChange = document.querySelector("div.change div#photo_change");
+const elPhotoFromForm = document.querySelector("div.change div#photo_change input");
+const elStatusBlock = document.querySelector("article div.left div#status");
+const elStatus = document.querySelector("article div.left div#status span#status_quote");
+const elStatusChange = document.querySelector("div.change div#status_change");
+const elStatusFromForm = document.querySelector("div.change div#status_change input");
+const elFio = document.querySelector("article div.right div#fio span#fio_letter");
+const elFioChange = document.querySelector("div.change div#fio_change");
+const elSurnameFromForm = document.querySelector("div.change div#fio_change input#surname");
+const elNameFromForm = document.querySelector("div.change div#fio_change input#name");
+const elSecondNameFromForm = document.querySelector("div.change div#fio_change input#second_name");
+const elBirthdayDate = document.querySelector("article div.right div#birthday span#dr_letter");
+const elBirthdayDateChange = document.querySelector("div.change div#birthday_change");
+const elBirthdayDateFromForm = document.querySelector("div.change div#birthday_change input");
+const elBlock = document.querySelector("article div.right div#about div#block span#block_letter");
+const elBlockChange = document.querySelector("div.change div#block_change");
+const elHobby = document.querySelector("article div.right div#about div#hobby span#hobby_letter");
+const elHobbyChange = document.querySelector("div.change div#hobby_change");
+const elHobbyFromForm = document.querySelector("div.change div#hobby_change textarea");
+const elVkUpload = document.querySelector("div.change div#vk_upload");
+// Classes
+const clBodyBackground = 'change_color';
+// Functions
+function displayOn () {
+    elArticle.style.display = "grid";
+    elHeader.style.display = "block";
+    elBody.classList.remove(clBodyBackground);
 }
 
-function display_off () {
-    document.getElementById("mainArticle").style.display = "none";
-    document.getElementById("pageHeader").style.display = "none";
+function displayOff () {
+    elArticle.style.display = "none";
+    elHeader.style.display = "none";
+    elBody.classList.add(clBodyBackground);
 }
 
-function photo_change () {
-    document.getElementById("photo_change").style.display ="block";
-    display_off()
+function changePhoto () {
+    elPhotoChange.style.display ="block";
+    displayOff()
 }
 
-function photo () {
-    document.getElementById('image').src = document.forms["data_for_form"].elements["photo"].value;
-    document.getElementById("photo_change").style.display ="none";
-    display_on()
+function savePhoto (i) {
+    if (i) {
+        elPhoto .src = elPhotoFromForm .value;
+    }
+    elPhotoChange.style.display ="none";
+    displayOn()
 }
 
-function status_change () {
-    document.getElementById("status_change").style.display = "block";
-    display_off();
+function changeStatus () {
+    elStatusChange.style.display = "block";
+    displayOff();
 }
 
-function status () {
-    document.getElementById("status_quote").innerHTML = document.forms["data_for_form"].elements["status"].value;
-    document.getElementById("status_change").style.display = "none";
-    display_on();
+function saveStatus (i) {
+    if (i) {
+        elStatus.innerHTML = elStatusFromForm.value;
+    }
+    elStatusChange.style.display = "none";
+    displayOn();
 }
 
-function fio_change () {
-    document.getElementById("fio_change").style.display = "block";
-    display_off();
+function changeFio () {
+    elFioChange.style.display = "block";
+    displayOff();
 }
 
-function fio() {
-    document.getElementById("fio_letter").innerHTML = document.forms["data_for_form"].elements["surname"].value + " " + document.forms["data_for_form"].elements["name"].value + " " + document.forms["data_for_form"].elements["s_name"].value;
-    document.getElementById("fio_change").style.display = "none";
-    display_on();
+function saveFio (i) {
+    if (i) {
+        elFio.innerHTML = elSurnameFromForm.value + " " + elNameFromForm.value + " " + elSecondNameFromForm.value;
+    }
+    elFioChange.style.display = "none";
+    displayOn();
 }
 
-function dr_change () {
-    document.getElementById("dr_change").style.display = "block";
-    display_off();
+function changeBirthdayDate () {
+    elBirthdayDateChange.style.display = "block";
+    displayOff();
 }
 
-function dr() {
-    let str = document.forms["data_for_form"].elements["date"].value.toString();
-    document.getElementById("dr_letter").innerHTML = str[8] + str[9] + "." + str[5] + str[6] + "." + str[2] + str[3];
-    document.getElementById("dr_change").style.display = "none";
-    display_on();
+function saveBirthdayDate (i) {
+    if (i) {
+        let str = elBirthdayDateFromForm.value.toString();
+        elBirthdayDate.innerHTML = str[8] + str[9] + "." + str[5] + str[6] + "." + str[2] + str[3];
+    }
+    elBirthdayDateChange.style.display = "none";
+    displayOn();
 }
 
-function work_change () {
-    document.getElementById("work_change").style.display = "block";
-    display_off();
+function changeBlock () {
+    elBlockChange.style.display = "block";
+    displayOff();
 }
 
-function work () {
-    let a="";
-    let c = 0;
-    for(let i = 0; i < 29; i++) {
-        if(document.forms["data_for_form"].elements[i].checked) {
-            let b = document.forms["data_for_form"].elements[i].value;
-            a = a + b + ", ";
-            c++;
-            if(c == 4) {
-                a = a + "\n";
-                c = 0;
+function saveBlock (i) {
+    if (i) {
+        let a="";
+        let c = 0;
+        for(let i = 0; i < 29; i++) {
+            if(document.forms["account_page"].elements[i].checked) {
+                let b = document.forms["account_page"].elements[i].value;
+                a = a + b + ", ";
+                c++;
+                if(c === 4) {
+                    a = a + "\n";
+                    c = 0;
+                }
             }
         }
+        a = a.substring(0, a.length - 2);
+        elBlock.innerHTML = a;
     }
-    a = a.substring(0, a.length - 2);
-    document.getElementById("work_letter").innerHTML = a;
-    document.getElementById("work_change").style.display = "none";
-    display_on();
+    elBlockChange.style.display = "none";
+    displayOn();
 }
 
-function hobby_change () {
-    document.getElementById("hobby_change").style.display = "block";
-    display_off();
+function changeHobby () {
+    elHobbyChange.style.display = "block";
+    displayOff();
 }
 
-function hobby () {
-    document.getElementById("hobby_letter").innerHTML = document.forms["data_for_form"].elements["hobby"].value;
-    document.getElementById("hobby_change").style.display = "none";
-    display_on();
+function saveHobby (i) {
+    if (i) {
+        elHobby.innerHTML = elHobbyFromForm.value;
+    }
+    elHobbyChange.style.display = "none";
+    displayOn();
 }
 
-function vk_change () {
-    document.getElementById("vk_change").style.display = "block";
-    display_off();
+function uploadFromVk () {
+    elVkUpload.style.display = "block";
+    displayOff();
 }
 
 function ajaxGet() {
     $.ajax({
-        url: "vk.html",
+        url: urlForUploadVkInfo,
         method: 'GET',
         success: function (html) {
-            document.getElementById('image').src  = $(html).find(".page_avatar_img").attr('src');
+            elPhoto.src  = $(html).find(".page_avatar_img").attr('src');
 
             let reg_status = /<span class="current_text">(.+)<\/span><\/span><\/span>/;
-            document.getElementById("status_quote").innerHTML = html.match(reg_status)[1];
+            elStatus.innerHTML = html.match(reg_status)[1];
 
             let reg_fio = /<h2 class="page_name">(.+)<\/h2>/;
-            document.getElementById("fio_letter").innerHTML = html.match(reg_fio)[1];
+            elFio.innerHTML = html.match(reg_fio)[1];
 
             let reg_dr = /<div class="labeled">(.+)<\/div>/;
-            document.getElementById("dr_letter").innerHTML = html.match(reg_dr)[1];
+            elBirthdayDate.innerHTML = html.match(reg_dr)[1];
         }
     });
 }
 
-function vk() {
-    ajaxGet();
-    document.getElementById("vk_change").style.display = "none";
-    display_on();
+function saveFromVk(i) {
+    if (i) {
+        ajaxGet();
+    }
+    elVkUpload.style.display = "none";
+    displayOn();
 }
 
 

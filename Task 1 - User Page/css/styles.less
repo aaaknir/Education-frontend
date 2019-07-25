@@ -1,88 +1,4 @@
-// Цвет
-@background-color: #705aca; //цвет фона
-@background-color-change: #cccccc; //цвет фона панели изменений
-@color-header-span: white; //цвет текста в шапке
-@background-color-textarea: #f8f8f8; // цвет фона в поле textarea
-@background-color-border-textarea: #ccc; // цвет рамкаи поля textarea
-@background-color-column: white; // цвет фона колонки
-@background-color-status: lightgrey; // цвет фона статуса
-@background-color-status-span: black; // цвет текста статуса
-@color-fio: #705aca; //цвет текста Ф.И.О.
-@color-border-input: #ccc; //цвет обводки input
-@color-border-input-active: #28a745; //цвет обводки input active
-
-// Шрифт
-@font: "FuturaBookC", sans-serif;
-@body-font-size: 1.4em;
-@fio-font-size: 1.3em;
-@fio-font-weight: bolder;
-@work-letter-font-stretch: semi-expanded;
-@work-letter-font-style: oblique;
-@hobby-font-style: italic;
-
-//Расположение и размер
-@change-margin: 100px; //для блока внесения изменений
-@change-work-margin: 100px; //для блока внесения изменений
-@change-padding: 50px; //для блока внесения изменений
-@change-border-radius: 30px; //для блока внесения изменений
-@change-margin-left: 20px;
-@input-width: 100%;
-@input-height: 40px;
-@input-padding: 12px 20px;
-@input-margin: 8px 0;
-@input-box-sizing: border-box;
-@textarea-width: 100%;
-@textarea-height: 150px;
-@textarea-padding: 12px 20px;
-@textarea-box-sizing: border-box;
-@textarea-border: 2px solid;
-@textarea-border-radius: 4px;
-@textarea-resize: none;
-@header-display: block;
-@header-margin-top:5px;
-@header-margin-bottom: 5px;
-@article-display: grid;
-@article-grid-column-gap: 15px;
-@article-grid-template-columns: 1fr 2fr;
-@article-min-height: 495px;
-@left-display: block; //для левой колонки
-@left-float: left; // для левой колонки
-@profile-photo-width: 90%;
-@profile-photo-height: 90%;
-@profile-photo-display: flex;
-@profile-photo-justify-content: center;
-@profile-photo-align-items: center;
-@profile-photo-overflow: hidden;
-@profile-photo-position: relative;
-@profile-photo-transform: translate(-50%, -50%);
-@profile-photo-top: 50%;
-@profile-photo-left: 50%;
-@profile-photo-image-min-width: auto;
-@profile-photo-image-min-height: auto;
-@profile-photo-image-height: 100%;
-@profile-photo-image-position: absolute;
-@profile-photo-image-top: 50%;
-@profile-photo-image-left: 50%;
-@profile-photo-image-transform: translate(-50%, -50%);
-@status-display: block;
-@status-position: absolute;
-@status-padding: 20px;
-@status-border-radius: 10px;
-@status-opacity: 0.8;
-@status-max-height: 100px;
-@status-width: 290px;
-@status-transform: translate(10px, -50px);
-@right-display: block; // для правой колонки
-@right-padding: 20px; // для правой колонки
-@right-float: right; // для правой колонки
-@right-img-change-cursor: pointer; // изображение для кнопки изменить
-@right-img-change-opacity: 0.2; // изображение для кнопки изменить
-@right-img-change-opacity-hover: 1; // изображение для кнопки изменить при наведении
-@input-field-padding: 5px;
-@input-field-border: 2px solid;
-@input-field-border-radius: 5px;
-@input-button-float:right;
-@input-button-margin: 5px;
+/* Основные настройки внешего вида */
 
 * {
   padding: 0;
@@ -101,9 +17,9 @@ body {
   grid-column-gap: 10px;
   max-height: 100vh;
   margin: 0;
-  background-color: @background-color;
-  font-family: @font;
-  font-size: @body-font-size;
+  background-color: #705aca;
+  font-family: "FuturaBookC", sans-serif;
+  font-size: 1.4em;
 }
 
 #pageHeader {grid-area: hea;}
@@ -112,27 +28,32 @@ body {
 #siteAds {grid-area: ads;}
 #foot {grid-area:foot;}
 
-/* Изменения панелей */
+/* Изменения панелей. Функционал 1 */
 
-#photo_change, #status_change, #fio_change, #dr_change, #hobby_change, #vk_change, #work_change {
+#photo_change, #status_change, #fio_change, #dr_change, #hobby_change, #vk_change {
   display: none;
-  margin: @change-margin;
-  padding: @change-padding;
+  margin: 100px;
+  padding: 50px;
   text-align: center;
-  background-color: @background-color-change;
-  border-radius: @change-border-radius;
+  background-color: #cccccc;
+  border-radius: 30px;
 }
 
 #work_change {
-  margin: @change-work-margin;
+  display: none;
+  margin: 50px;
+  padding: 50px;
+  text-align: center;
+  background-color: #cccccc;
+  border-radius: 30px;
 }
 
-#photo_change input[type=text], #status_change input[type=text], #fio_change input[type=text], #vk_change input[type=text] {
-  width: @input-width;
-  height: @input-height;
-  padding: @input-padding;
-  margin: @input-margin;
-  box-sizing: @input-box-sizing;
+#photo_change input[type=text], #status_change input[type=text], #fio_change input[type=text], #vk_change input[type=text]{
+  width: 100%;
+  height: 40px;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
 }
 
 ::-webkit-calendar-picker-indicator {
@@ -143,142 +64,144 @@ body {
 }
 
 textarea {
-  width: @textarea-width;
-  height: @textarea-height;
-  padding: @textarea-padding;
-  box-sizing: @textarea-box-sizing;
-  border: @textarea-border @background-color-border-textarea;
-  border-radius: @textarea-border-radius;
-  background-color: @background-color-textarea;
-  resize: @textarea-resize;
+  width: 100%;
+  height: 150px;
+  padding: 12px 20px;
+  box-sizing: border-box;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  background-color: #f8f8f8;
+  resize: none;
 }
 
 /* Шапка */
 
 header {
-  display: @header-display;
-  margin-top: @header-margin-top;
-  margin-bottom: @header-margin-bottom;
+  display: block;
+  margin-top:5px;
+  margin-bottom: 5px;
   text-align: center;
 }
 
 header span {
-  color: @color-header-span;
+  color: white;
 }
 
 /* Информативный блок сайта */
 
 article {
-  display: @article-display;
-  grid-column-gap: @article-grid-column-gap;
-  grid-template-columns: @article-grid-template-columns;
-  min-height: @article-min-height;
+  display: grid;
+  grid-column-gap: 15px;
+  grid-template-columns: 1fr 2fr;
+  min-height: 495px;
 }
 
 .left {
-  display: @left-display;
-  float: @left-float;
-  background-color: @background-color-column;
+  display: block;
+  float: left;
+  background-color: white;
 }
 
 #photo {
-  width: @profile-photo-width;
-  height: @profile-photo-height;
-  display: @profile-photo-display;
-  justify-content: @profile-photo-justify-content;
-  align-items: @profile-photo-align-items;
-  overflow: @profile-photo-overflow;
-  position: @profile-photo-position;
-  transform: @profile-photo-transform;
-  top: @profile-photo-top;
-  left: @profile-photo-left;
+  width: 90%;
+  height: 90%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  position: relative;
+  transform: translate(-50%, -50%);
+  top: 50%;
+  left: 50%;
 }
 
 #photo #image {
-  min-width: @profile-photo-image-min-width;
-  min-height: @profile-photo-image-min-height;
-  height: @profile-photo-image-height;
-  position: @profile-photo-image-position;
-  top: @profile-photo-image-top;
-  left: @profile-photo-image-left;
-  transform: @profile-photo-image-transform;
+  min-width: auto;
+  min-height: auto;
+  height: 100%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 #status {
-  display: @status-display;
-  position: @status-position;
-  padding: @status-padding;
-  border-radius: @status-border-radius;
-  opacity: @status-opacity;
-  max-height: @status-max-height;
-  width: @status-width;
-  transform: @status-transform;
-  background-color: @background-color-status;
+  display: block;
+  position: absolute;
+  padding: 20px;
+  border-radius: 10px;
+  opacity: 0.8;
+  max-height: 100px;
+  width: 290px;
+  background-color: lightgrey;
   text-align: center;
+  transform: translate(10px, -50px);
 }
 
 #status span {
-  color: @background-color-status-span;
+  color: black;
 }
 
 .right {
-  display: @right-display;
-  padding: @right-padding;
-  float: @right-float;
-  background-color: @background-color-column;
+  display: block;
+  padding: 20px;
+  float: right;
+  background-color: white;
 }
 
 .img  {
-  cursor: @right-img-change-cursor;
-  opacity: @right-img-change-opacity;
+  cursor: pointer;
+  opacity: 0.2;
 }
 
 .img:hover {
-  opacity: @right-img-change-opacity-hover;
+  cursor: pointer;
+  opacity: 1;
 }
 
 #fio {
-  font-size: @fio-font-size;
-  font-weight: @fio-font-weight;
-  color: @color-fio;
+  font-size: 1.3em;
+  font-weight: bolder;
+  color: #705aca;
 }
 
-#hobby, #work, #hobby_letter, #work_letter {
-  margin-left: @change-margin-left;
+#hobby, #work {
+  margin-left: 20px;
+}
+#hobby_letter, #work_letter {
+  margin-left: 20px;
 }
 
 #work_letter {
-  font-stretch: @work-letter-font-stretch;
-  font-style: @work-letter-font-style;
+  font-stretch: semi-expanded;
+  font-style: oblique;
 }
 
 #hobby pre {
-  font-style: @hobby-font-style;
+  font-style: italic;
 }
 
 input, textarea:focus {
   outline: 0;
-  border-color: @color-border-input-active;
-  font-family: @font;
+  border-color: #7bca64;
+  font-family: "FuturaBookC", sans-serif;
 }
 
 input[type=text], textarea, select, fieldset {
-  padding: @input-field-padding;
-  border: @input-field-border @color-border-input;
-  border-radius: @input-field-border-radius;
+  padding:5px;
+  border:2px solid #ccc;
+  border-radius: 5px;
 }
 
 input[type=submit], input[type=button] {
-  float: @input-button-float;
-  margin: @input-button-margin;
+  float:right;
+  margin: 5px;
 }
 
 select {
-  font-family: @font;
+  font-family: "FuturaBookC", sans-serif;
 }
 
 /* Кнопки с Bootstrap */
 .btn{display:inline-block;font-weight:400;text-align:center;white-space:nowrap;vertical-align:middle;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;border:1px solid transparent;padding:.375rem .75rem;font-size:1rem;line-height:1.5;border-radius:.25rem;transition:color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out}.btn:focus,.btn:hover{text-decoration:none}.btn.focus,.btn:focus{outline:0;box-shadow:0 0 0 .2rem rgba(0,123,255,.25)}.btn.disabled,.btn:disabled{opacity:.65}.btn:not(:disabled):not(.disabled){cursor:pointer}.btn:not(:disabled):not(.disabled).active,.btn:not(:disabled):not(.disabled):active{background-image:none}a.btn.disabled,fieldset:disabled a.btn{pointer-events:none}.btn-primary{color:#fff;background-color:#007bff;border-color:#007bff}.btn-primary:hover{color:#fff;background-color:#0069d9;border-color:#0062cc}.btn-primary.focus,.btn-primary:focus{box-shadow:0 0 0 .2rem rgba(0,123,255,.5)}.btn-primary.disabled,.btn-primary:disabled{color:#fff;background-color:#007bff;border-color:#007bff}.btn-primary:not(:disabled):not(.disabled).active,.btn-primary:not(:disabled):not(.disabled):active,.show>.btn-primary.dropdown-toggle{color:#fff;background-color:#0062cc;border-color:#005cbf}.btn-primary:not(:disabled):not(.disabled).active:focus,.btn-primary:not(:disabled):not(.disabled):active:focus,.show>.btn-primary.dropdown-toggle:focus{box-shadow:0 0 0 .2rem rgba(0,123,255,.5)}
-
-.btn-outline-success {
-  color:#28a745;background-color:transparent;background-image:none;border-color:#28a745}.btn-outline-success:hover{color:#fff;background-color:#28a745;border-color:#28a745}.btn-outline-success.focus,.btn-outline-success:focus{box-shadow:0 0 0 .2rem rgba(40,167,69,.5)}.btn-outline-success.disabled,.btn-outline-success:disabled{color:#28a745;background-color:transparent}.btn-outline-success:not(:disabled):not(.disabled).active,.btn-outline-success:not(:disabled):not(.disabled):active,.show>.btn-outline-success.dropdown-toggle{color:#fff;background-color:#28a745;border-color:#28a745}.btn-outline-success:not(:disabled):not(.disabled).active:focus,.btn-outline-success:not(:disabled):not(.disabled):active:focus,.show>.btn-outline-success.dropdown-toggle:focus{box-shadow:0 0 0 .2rem rgba(40,167,69,.5)}
+.btn-outline-success{color:#28a745;background-color:transparent;background-image:none;border-color:#28a745}.btn-outline-success:hover{color:#fff;background-color:#28a745;border-color:#28a745}.btn-outline-success.focus,.btn-outline-success:focus{box-shadow:0 0 0 .2rem rgba(40,167,69,.5)}.btn-outline-success.disabled,.btn-outline-success:disabled{color:#28a745;background-color:transparent}.btn-outline-success:not(:disabled):not(.disabled).active,.btn-outline-success:not(:disabled):not(.disabled):active,.show>.btn-outline-success.dropdown-toggle{color:#fff;background-color:#28a745;border-color:#28a745}.btn-outline-success:not(:disabled):not(.disabled).active:focus,.btn-outline-success:not(:disabled):not(.disabled):active:focus,.show>.btn-outline-success.dropdown-toggle:focus{box-shadow:0 0 0 .2rem rgba(40,167,69,.5)}
