@@ -25,19 +25,19 @@ body {
   background-image: url("../img/background.png");
 }
 
-div#wrap {
+div#wrapper {
   width: 900px;
   min-height: 450px;
-  margin: 0 auto;
+  margin: 20px auto;
   background: rgba(255,255,255, 0.7);
 }
 
-div#wrap div#app {
+div#wrapper div#app {
   font-family: @font-text;
   color: @color-text;
 }
 
-div#wrap div#app p {
+div#wrapper div#app p {
   font-family: @font-contrast;
   color: @color-contrast;
   font-size: 30px;
@@ -45,39 +45,47 @@ div#wrap div#app p {
   padding: 5px;
 }
 
-div#wrap div#app label {
+div#wrapper div#app label {
   text-shadow: 5px 5px 5px #ccc;
   font-size: 20px;
 }
 
-div#wrap div#app form {
+div#wrapper div#app form {
   margin: 0 30px;
 }
 
-div#wrap div#app ul {
+div#wrapper div#app ul {
   margin-left: 50px;
   margin-right: 50px;
   padding: 3px;
 }
 
-div#wrap div#app ul li {
+div#wrapper div#app ul li {
   margin: 20px;
   font-size: 16px;
   list-style: none;
   background: #e7dfdd;
 }
 
-div#wrap div#app ul li span {
+div#wrapper div#app ul li span {
   font-family: @font-li;
   color: @color-li;
 }
 
-ul button {
+div#wrapper div#app button {
+  margin-left: 10px;
+}
+
+div#wrapper div#app ul button {
   float: right;
 }
 
-input[type=text] {
+div#wrapper div#app input[type=text] {
   width: 500px;
+}
+
+div#wrapper div#app input[type=checkbox] {
+  margin: 5px;
 }
 
 .done {
