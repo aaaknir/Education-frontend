@@ -1,0 +1,85 @@
+@import url('https://fonts.googleapis.com/css?family=Indie+Flower&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Abril+Fatface&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Open+Sans&display=swap');
+
+// Color Style
+@color-contrast: #ffb800;
+@color-text: #333333;
+@color-li: #333333;
+// Font Style
+@font-text: 'Open Sans', sans-serif;
+@font-li: 'Indie Flower', cursive;
+@font-contrast: 'Abril Fatface', cursive;
+
+* {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+html, body {
+  min-height: 100%;
+}
+
+body {
+  background-image: url("../img/background.png");
+}
+
+div#wrap {
+  width: 900px;
+  min-height: 450px;
+  margin: 0 auto;
+  background: rgba(255,255,255, 0.7);
+}
+
+div#wrap div#app {
+  font-family: @font-text;
+  color: @color-text;
+}
+
+div#wrap div#app p {
+  font-family: @font-contrast;
+  color: @color-contrast;
+  font-size: 30px;
+  text-align: center;
+  padding: 5px;
+}
+
+div#wrap div#app label {
+  text-shadow: 5px 5px 5px #ccc;
+  font-size: 20px;
+}
+
+div#wrap div#app form {
+  margin: 0 30px;
+}
+
+div#wrap div#app ul {
+  margin-left: 50px;
+  margin-right: 50px;
+  padding: 3px;
+}
+
+div#wrap div#app ul li {
+  margin: 20px;
+  font-size: 16px;
+  list-style: none;
+  background: #e7dfdd;
+}
+
+div#wrap div#app ul li span {
+  font-family: @font-li;
+  color: @color-li;
+}
+
+ul button {
+  float: right;
+}
+
+input[type=text] {
+  width: 500px;
+}
+
+.done {
+  text-decoration: line-through;
+}
