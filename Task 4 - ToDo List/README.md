@@ -5,4 +5,4 @@
 - Документация: ru.vuejs.org/v2/guide
 - Видеоуроки: 
     - vk.cc/9DrxdT 
-    - vk.cc/9Drx
+    - vk.cc/9DrxqU
