@@ -3,7 +3,6 @@ new Vue ({
     data: {
         newTodo: '',
         todos: []
-
     },
     methods: {
         addTodo () {
