@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet/less" type="text/css" href="css/main.less">
+
+    <title>To Do List</title>
+</head>
+<body>
+    <div id="wrap">
+        <div id="app">
+            <p>{{title}}</p>
+
+            <!-- Form -->
+            <form @submit.prevent="addTodo">
+                <label for="newTodo">New To Do</label>
+                <input class="form-control-sm" onblur="this.focus()" autofocus v-model="newTodo" type="text" name="newTodo" placeholder="Your To Do for today..." id="newTodo">
+                <button type="submit" name="button" class="btn btn-primary">Add</button>
+                <button @click="allDone" type="button" name="button" class="btn btn-success">All done</button>
+            </form>
+
+            <!-- List of our todos-->
+            <ul>
+                <li v-for="todo in todos">
+                    <input type="checkbox" v-model="todo.done">
+                    <span :class="{done: todo.done}">{{todo.title}}</span>
+                    <button @click="removeTodo(todo)" type="button" name="button" class="btn btn-danger btn-sm">Remove</button>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Script -->
+    <script src="js/vue.js"></script>
+    <script src="js/main.js" charset="UTF-8"></script>
+    <script src="js/less.min.js"></script>
+</body>
+</html>
