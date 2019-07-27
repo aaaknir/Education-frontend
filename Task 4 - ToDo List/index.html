@@ -9,9 +9,9 @@
     <title>To Do List</title>
 </head>
 <body>
-    <div id="wrap">
+    <div id="wrapper">
         <div id="app">
-            <p>{{title}}</p>
+            <p>To Do List</p>
 
             <!-- Form -->
             <form @submit.prevent="addTodo">
@@ -23,7 +23,7 @@
 
             <!-- List of our todos-->
             <ul>
-                <li v-for="todo in todos">
+                <li v-for="todo in todos" :key="todo.id">
                     <input type="checkbox" v-model="todo.done">
                     <span :class="{done: todo.done}">{{todo.title}}</span>
                     <button @click="removeTodo(todo)" type="button" name="button" class="btn btn-danger btn-sm">Remove</button>
