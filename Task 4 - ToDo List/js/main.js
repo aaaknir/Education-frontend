@@ -1,18 +1,19 @@
 new Vue ({
     el: '#app',
     data: {
-        title: 'To Do List',
         newTodo: '',
         todos: []
 
     },
     methods: {
         addTodo () {
-            this.todos.push({
-                title: this.newTodo,
-                done: false
-            });
-            this.newTodo = '';
+            if (this.newTodo) {
+                this.todos.push({
+                    title: this.newTodo,
+                    done: false
+                });
+                this.newTodo = '';
+            }
         },
         removeTodo (todo) {
             const todoIndex = this.todos.indexOf(todo);
