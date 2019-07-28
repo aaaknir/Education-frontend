@@ -42,7 +42,7 @@
                 if (num === this.good) {
                     this.$emit('success');
                 } else {
-                    this.$emit('error');
+                    this.$emit('error', `${this.x} + ${this.y} = ${this.good}`);
                 }
             }
         }

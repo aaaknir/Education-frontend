@@ -76,9 +76,9 @@ export default {
           this.message.type = 'success';
           this.stats.success++;
       },
-      onQuestionError () {
+      onQuestionError (msg) {
           this.state = 'message';
-          this.message.text = 'Error!';
+          this.message.text = msg;
           this.message.type = 'warning';
           this.stats.error++;
       },
