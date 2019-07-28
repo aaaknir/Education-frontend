@@ -1,6 +1,6 @@
 <template>
   <div class="training">
-    <h1>Math Training.</h1>
+    <h1>Math Training. Level {{level + 1}}</h1>
     <hr>
     <div class="progress">
       <div class="progress-bar" :style="progressStyles"></div>
@@ -8,9 +8,9 @@
     <div class="box">
       <transition name="flip" mode="out-in">
         <app-start-screen v-if="state === 'start'" @onStart="onStart"></app-start-screen>
-        <app-question v-else-if="state === 'question'" @success="onQuestionSuccess" @error="onQuestionError"></app-question>
+        <app-question v-else-if="state === 'question'" @success="onQuestionSuccess" @error="onQuestionError" :settings="levels[level]"></app-question>
         <app-message v-else-if="state === 'message'" :type="message.type" :text="message.text" @onNext="onNext"></app-message>
-        <app-result-screen v-else-if="state === 'result'"></app-result-screen>
+        <app-result-screen v-else-if="state === 'result'" :stats="stats" @repeat="onStart" @nextLevel="onNextLevel"></app-result-screen>
         <div v-else>Unknown state</div>
       </transition>
     </div>
@@ -30,7 +30,28 @@ export default {
           type: '',
           text: ''
       },
-      questMax: 3
+      questMax: 3,
+      level: 0,
+      levels: [
+          {
+              from: 10,
+              to: 40,
+              range: 5,
+              variants: 2
+          },
+          {
+              from: 100,
+              to: 200,
+              range: 20,
+              variants: 4
+          },
+          {
+              from: 500,
+              to: 900,
+              range: 40,
+              variants: 6
+          }
+        ]
     }
   },
   computed: {
@@ -46,6 +67,8 @@ export default {
   methods: {
       onStart () {
           this.state = 'question';
+          this.stats.success = 0;
+          this.stats.error = 0;
       },
       onQuestionSuccess () {
           this.state = 'message';
@@ -53,9 +76,9 @@ export default {
           this.message.type = 'success';
           this.stats.success++;
       },
-      onQuestionError (msg) {
+      onQuestionError () {
           this.state = 'message';
-          this.message.text = msg;
+          this.message.text = 'Error!';
           this.message.type = 'warning';
           this.stats.error++;
       },
@@ -65,6 +88,10 @@ export default {
           } else {
               this.state = 'result';
           }
+      },
+      onNextLevel () {
+          this.level++;
+          this.onStart();
       }
   }
 }
