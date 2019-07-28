@@ -1,6 +1,8 @@
 ### Результаты тестирования W3Schools Quizzes
 
-* HTML:
-* CSS:
-* JS:
-* Bootstrap:
+* HTML: 37/40
+* CSS: 25/25
+* JS: 25/25
+* Bootstrap: 22/25
+
+Ошибки разобраны и поняты.
