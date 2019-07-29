@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div class="left">
-      <form @submit.prevent="addList()">
+      <form @submit.prevent="addList">
         <input class="form-control-sm" v-model="newList" type="text" name="newList" placeholder="Enter your To Do List name..." id="newList">
         <button type="submit" name="button" class="btn btn-primary">Add List</button>
       </form>
@@ -29,7 +29,7 @@
         <button @click="allDone" type="button" name="button" class="btn btn-success btn-sm">All done</button>
       </form>
       <ul>
-        <li v-for="todo in todos" :key="todo.id">
+        <li v-for="todo in lists[stateList].todos" :key="todo.id">
           <input type="checkbox" v-model="todo.done">
           <span id="title" :class="{done: todo.done}">{{todo.title}}</span>
           <div id="description">{{todo.description}}</div>
@@ -73,7 +73,7 @@
             },
             addTodo () {
                 if (this.newTodo && this.newTodoDescription && this.newTodoDate && this.newTodoPriority) {
-                    this.todos.push({
+                    this.lists[stateList].todos.push({
                         title: this.newTodo,
                         description: this.newTodoDescription,
                         date:this.newTodoDate,
