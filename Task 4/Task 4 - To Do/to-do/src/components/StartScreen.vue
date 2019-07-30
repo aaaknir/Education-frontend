@@ -21,41 +21,44 @@
 
           <!-- Displaying list name -->
           <div id="list-name">
-            <span>{{list}}</span>
+            <span>{{list.title}}</span>
           </div>
         </div>
       </div>
 
       <!-- Hide info in right column -->
-      <button @click="state_list=null" type="button" name="button" class="btn btn-info btn-sm">Hide lists</button>
+      <button v-if="state_list != null" @click="state_list=null" type="button" name="button" class="btn btn-info btn-sm" id="button-hide">Hide list's info</button>
     </div>
 
     <!-- Right column. Info about list, to-do list -->
     <div class="right-column" v-if="state_list != null">
       <span id="title-right">{{state_list.title}}</span>
 
+      <!-- Axios -->
+      <button class="btn btn-sm btn-warning" @click="postPost" id="button-axios">Axios</button>
+
       <!-- Form of adding todos -->
       <form @submit.prevent="addTodo">
         <input maxlength="51" class="form-control-sm" v-model="newTodo" type="text" name="newTodo" placeholder="Name Todo" id="newTodo"><label for="newTodo"></label>
         <input maxlength="51" class="form-control-sm" v-model="newTodoDescription" type="text" name="newTodoDescription" placeholder="Describe Todo" id="newTodoDescription"><label for="newTodoDescription"></label>
-        <label for="newTodoDate">Deadline</label><input class="form-control-sm" v-model="newTodoDate" type="date" name="newTodoDate" id="newTodoDate">
         <select class="form-control" v-model="newTodoPriority" type="" name="newTodoPriority" id="newTodoPriority">
-          <option @click="type = 'success'">Important</option>
-          <option @click="type = 'warning'">Middle</option>
-          <option @click="type = 'dark'">None</option>
+          <option>important</option>
+          <option>middle</option>
+          <option>none</option>
         </select><label for="newTodoPriority"></label>
+        <label for="newTodoDate">Deadline</label><input class="form-control-sm" v-model="newTodoDate" type="date" name="newTodoDate" id="newTodoDate">
         <button type="submit" name="button" class="btn btn-primary btn-sm">Add</button>
         <button @click="allDone" type="button" name="button" class="btn btn-success btn-sm">All done</button>
       </form>
 
       <!-- Filter panel -->
       <div id="to-do-panel">
-        <button :class="{active: filter = 'all'}" @click="filter = 'all'">All</button>
-        <button :class="{active: filter = 'active'}" @click="filter = 'active'">Active</button>
-        <button :class="{active: filter = 'completed'}" @click="filter = 'completed'">Completed</button>
-        <button :class="{active: filter = 'important'}" @click="filter = 'important'">Important</button>
-        <button :class="{active: filter = 'middle'}" @click="filter = 'middle'">Middle</button>
-        <button :class="{active: filter = 'none'}" @click="filter = 'none'">None</button>
+        <button class="btn btn-outline-secondary btn-sm" :class="{active: filter === 'all'}" @click="filter = 'all'">All</button>
+        <button class="btn btn-outline-secondary btn-sm" :class="{active: filter === 'active'}" @click="filter = 'active'">Active</button>
+        <button class="btn btn-outline-secondary btn-sm" :class="{active: filter === 'completed'}" @click="filter = 'completed'">Completed</button>
+        <button class="btn btn-outline-secondary btn-sm" :class="{active: filter === 'important'}" @click="filter = 'important'">Important</button>
+        <button class="btn btn-outline-secondary btn-sm" :class="{active: filter === 'middle'}" @click="filter = 'middle'">Middle</button>
+        <button class="btn btn-outline-secondary btn-sm" :class="{active: filter === 'none'}" @click="filter = 'none'">None</button>
       </div>
 
       <!-- Info in right-column -->
@@ -66,19 +69,18 @@
             <span id="title" :class="{done: todo.done}">{{todo.title}}</span><br>
             <div id="description" :class="{done: todo.done}">{{todo.description}}</div><br>
             <div id="date">{{todo.date}}</div>
-            <span class="badge badge-secondary" id="priority">{{todo.priority}}</span>
+            <span class="badge badge-info" id="priority">{{todo.priority}}</span>
             <button @click="removeTodo(todo)" type="button" name="button" class="btn btn-danger btn-sm">Remove</button>
           </li>
         </ul>
       </div>
-
-      <!-- Axios -->
-      <button class="btn btn-sm btn-outline-secondary" @click="postPost">Axios</button>
     </div>
   </div>
 </template>
 
 <script>
+    import axios from 'axios'
+
     export default {
         name: "AppStartScreen",
         data() {
@@ -90,13 +92,12 @@
                 newTodoDate: '',
                 newTodoPriority: '',
                 state_list: null,
-                filter: 'all',
-                type: 'success'
+                filter: 'all'
             }
         },
         methods: {
             addList() {
-                let todos = new Array(0);
+                let todos = [];
                 if (this.newList) {
                     this.lists.push({
                         title: this.newList,
@@ -112,6 +113,12 @@
                     return list.todos.filter(todo => !todo.done)
                 } else if (this.filter === 'completed') {
                     return list.todos.filter(todo => todo.done)
+                } else if (this.filter === 'important') {
+                    return list.todos.filter(todo => todo.priority === this.filter)
+                } else if (this.filter === 'middle') {
+                    return list.todos.filter(todo => todo.priority === this.filter)
+                } else if (this.filter === 'none') {
+                    return list.todos.filter(todo => todo.priority === this.filter)
                 }
                 return list.todos;
             },
@@ -196,6 +203,11 @@
     padding: 10px 18px;
   }
 
+  div.container div.left-column button#button-hide {
+    margin-top: 10px;
+    float: right;
+  }
+
   div.container div.left-column div#list {
     cursor: pointer;
     display: flex;
@@ -219,7 +231,8 @@
   div.container div.right-column {
     width: 100%;
     height: 500px;
-    padding: 10px 10px 10px 20px;
+    padding: 10px;
+    margin-left: 20px;
     border: 2px solid #ccc;
     border-radius: 5px;
     overflow: auto;
@@ -234,6 +247,10 @@
     border-radius: 3px;
     font-size: 20px;
     font-weight: bold;
+  }
+
+  div.container div.right-column button#button-axios {
+    float: right;
   }
 
   div.container div.right-column form {
@@ -252,6 +269,7 @@
   div.container div.right-column input[type=date] {
     margin-bottom: 3px;
     margin-left: 5px;
+    margin-right: 175px;
   }
 
   div.container div.right-column input[type=checkbox] {
@@ -264,12 +282,15 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    border: 2px solid #ccc;
+    border-radius: 5px;
   }
 
   div.container div.right-column div#right-info {
     background-color: #007bff;
     float: left;
     margin-bottom: 5px;
+    border-radius: 5px;
   }
 
   div.container div.right-column div#right-info ul li {
@@ -300,13 +321,14 @@
     font-weight: 700;
   }
 
-  div.container div.right #description {
+  div.container div.right-column #description {
+    margin-left: 20px;
     display: inline-block;
     width: 400px;
     height: 30px;
   }
 
-  div.container div.right #priority {
+  div.container div.right-column #priority {
     display: inline-block;
     font-size: 14px;
     border-radius: 3px;
@@ -315,7 +337,7 @@
     margin-right: 5px;
   }
 
-  div.container div.right #date {
+  div.container div.right-column #date {
     display: inline-block;
     background-color: #8fadde;
     border-radius: 3px;
