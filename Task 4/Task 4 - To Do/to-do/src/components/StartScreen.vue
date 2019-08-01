@@ -88,10 +88,12 @@
             return {
                 lists: [],
                 new_list: '',
-                new_todo: '',
-                new_todo_description: '',
-                new_todo_date: '',
-                new_todo_priority: '',
+                new_to: {
+                    new_todo: '',
+                    new_todo_description: '',
+                    new_todo_date: '',
+                    new_todo_priority: '',
+                },
                 state_list: null,
                 filter: 'all'
             }
