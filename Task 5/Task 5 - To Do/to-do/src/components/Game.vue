@@ -1,8 +1,6 @@
 <template>
   <div id="demo">
-      <button class="btn btn-outline-info" v-on:click="show = !show">
-        Just take a rest from planning!
-      </button>
+      <button class="btn btn-outline-info" v-on:click="show = !show">Just take a rest from planning!</button>
       <transition name="fade">
         <div v-if="show">
           <iframe width="520"  height="300" src="https://www.youtube.com/embed/386AMmsu33c" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
@@ -13,8 +11,8 @@
 
 <script>
     export default {
-        name: "AppPlanner",
-        data() {
+        name: "AppGame",
+        data () {
             return {
                 show: false
             }

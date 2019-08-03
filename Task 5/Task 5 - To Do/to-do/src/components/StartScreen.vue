@@ -39,17 +39,17 @@
       <button class="btn btn-sm btn-warning" @click="postPost" id="button-axios">Axios</button>
 
       <!-- Form of adding todos -->
-      <form @submit.prevent="addTodo">
-        <input maxlength="51" class="form-control-sm" v-model="new_todo" type="text" name="new_todo" placeholder="Name Todo" id="new_todo"><label for="new_todo"></label>
-        <input maxlength="51" class="form-control-sm" v-model="new_todo_description" type="text" name="new_todo_description" placeholder="Describe Todo" id="new_todo_description"><label for="new_todo_description"></label>
-        <select class="form-control" v-model="new_todo_priority" type="" name="new_todo_priority" id="new_todo_priority">
+      <form @submit.prevent="$store.todo.mutations.addTodo(state_list)">
+        <input maxlength="51" class="form-control-sm" v-model="$store.todo.state.new_todo" type="text" name="new_todo" placeholder="Name Todo" id="new_todo"><label for="new_todo"></label>
+        <input maxlength="51" class="form-control-sm" v-model="$store.todo.state.new_todo_description" type="text" name="new_todo_description" placeholder="Describe Todo" id="new_todo_description"><label for="new_todo_description"></label>
+        <select class="form-control" v-model="$store.todo.state.new_todo_priority" type="" name="new_todo_priority" id="new_todo_priority">
           <option>important</option>
           <option>middle</option>
           <option>none</option>
         </select><label for="new_todo_priority"></label>
-        <label for="new_todo_date">Deadline</label><input class="form-control-sm" v-model="new_todo_date" type="date" name="new_todo_date" id="new_todo_date">
+        <label for="new_todo_date">Deadline</label><input class="form-control-sm" v-model="$store.todo.state.new_todo_date" type="date" name="new_todo_date" id="new_todo_date">
         <button type="submit" name="button" class="btn btn-primary btn-sm">Add</button>
-        <button @click="allDone" type="button" name="button" class="btn btn-success btn-sm">All done</button>
+        <button @click="$store.todo.mutations.allDone(state_list)" type="button" name="button" class="btn btn-success btn-sm">All done</button>
       </form>
 
       <!-- Filter panel -->
@@ -71,7 +71,7 @@
             <div id="description" :class="{done: todo.done}">{{todo.description}}</div><br>
             <div id="date">{{todo.date}}</div>
             <span class="badge badge-info" id="priority">{{todo.priority}}</span>
-            <button @click="removeTodo(todo)" type="button" name="button" class="btn btn-danger btn-sm">Remove</button>
+            <button @click="$store.todo.actions.removeTodo(todo, state_list)" type="button" name="button" class="btn btn-danger btn-sm">Remove</button>
           </li>
         </ul>
       </div>
@@ -81,25 +81,19 @@
 
 <script>
     import axios from 'axios';
-    import Vuex from 'vuex';
-    import 'es6-promise/auto';
-    Vue.use(Vuex);
 
     export default {
         name: "AppStartScreen",
         data() {
             return {
-                lists: [],
                 new_list: '',
-                new_to: {
-                    new_todo: '',
-                    new_todo_description: '',
-                    new_todo_date: '',
-                    new_todo_priority: '',
-                },
+                lists: [],
                 state_list: null,
                 filter: 'all'
             }
+        },
+        computed: {
+
         },
         methods: {
             chooseList(list) {
@@ -130,31 +124,6 @@
                 const list_index = this.lists.indexOf(list);
                 this.lists.splice(list_index, 1);
                 this.state_list = null;
-            },
-            addTodo() {
-                if (this.new_todo && this.new_todo_description && this.new_todo_date && this.new_todo_priority) {
-                    this.state_list.todos.push({
-                        title: this.new_todo,
-                        description: this.new_todo_description,
-                        date: this.new_todo_date,
-                        priority: this.new_todo_priority,
-                        done: false
-                    });
-                    this.new_todo = '';
-                    this.new_todo_description = '';
-                    this.new_todo_date = '';
-                    this.new_todo_priority = '';
-                    console.log(this.type);
-                }
-            },
-            removeTodo(todo) {
-                const todo_index = this.state_list.todos.indexOf(todo);
-                this.state_list.todos.splice(todo_index, 1);
-            },
-            allDone() {
-                this.state_list.todos.forEach(todo => {
-                    todo.done = true;
-                });
             },
             postPost() {
                 const str = JSON.stringify(this.lists);
