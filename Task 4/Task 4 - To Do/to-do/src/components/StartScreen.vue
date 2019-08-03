@@ -87,7 +87,7 @@
         data() {
             return {
                 lists: [],
-                new_list: '',
+                new_list: '',аа
                 new_to: {
                     new_todo: '',
                     new_todo_description: '',
