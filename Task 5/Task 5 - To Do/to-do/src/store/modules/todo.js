@@ -8,34 +8,40 @@ export default {
     }
   },
   mutations: {
-    addTodo(state_list) {
-      if (this.new_todo && this.new_todo_description && this.new_todo_date && this.new_todo_priority) {
+    addTodo(state, state_list) {
+      if (state.new_todo && state.new_todo_description && state.new_todo_date && state.new_todo_priority) {
         state_list.todos.push({
-          title: this.new_todo,
-          description: this.new_todo_description,
-          date: this.new_todo_date,
-          priority: this.new_todo_priority,
+          title: state.new_todo,
+          description: state.new_todo_description,
+          date: state.new_todo_date,
+          priority: state.new_todo_priority,
           done: false
         });
-        this.new_todo = '';
-        this.new_todo_description = '';
-        this.new_todo_date = '';
-        this.new_todo_priority = '';
+        state.new_todo = '';
+        state.new_todo_description = '';
+        state.new_todo_date = '';
+        state.new_todo_priority = '';
       }
     },
-    allDone(state_list) {
+    allDone(state, state_list) {
       state_list.todos.forEach(todo => {
         todo.done = true;
       });
     },
-  },
-  actions: {
-    removeTodo(todo, state_list) {
+    removeTodo(state, {todo, state_list}) {
       const todo_index = state_list.todos.indexOf(todo);
       state_list.todos.splice(todo_index, 1);
-    },
+    }
   },
-  getters: {
-
+  actions:{
+    addTodo(context, state_list) {
+      context.commit('addTodo', state_list)
+    },
+    allDone(context, state_list) {
+      context.commit('allDone', state_list)
+    },
+    removeTodo(context, {todo, state_list}) {
+      context.commit('removeTodo', {todo, state_list})
+    }
   }
 }

@@ -39,7 +39,7 @@
       <button class="btn btn-sm btn-warning" @click="postPost" id="button-axios">Axios</button>
 
       <!-- Form of adding todos -->
-      <form @submit.prevent="$store.todo.mutations.addTodo(state_list)">
+      <form @submit.prevent="$store.todo.dispatch('addTodo', state_list)">
         <input maxlength="51" class="form-control-sm" v-model="$store.todo.state.new_todo" type="text" name="new_todo" placeholder="Name Todo" id="new_todo"><label for="new_todo"></label>
         <input maxlength="51" class="form-control-sm" v-model="$store.todo.state.new_todo_description" type="text" name="new_todo_description" placeholder="Describe Todo" id="new_todo_description"><label for="new_todo_description"></label>
         <select class="form-control" v-model="$store.todo.state.new_todo_priority" type="" name="new_todo_priority" id="new_todo_priority">
@@ -49,7 +49,7 @@
         </select><label for="new_todo_priority"></label>
         <label for="new_todo_date">Deadline</label><input class="form-control-sm" v-model="$store.todo.state.new_todo_date" type="date" name="new_todo_date" id="new_todo_date">
         <button type="submit" name="button" class="btn btn-primary btn-sm">Add</button>
-        <button @click="$store.todo.mutations.allDone(state_list)" type="button" name="button" class="btn btn-success btn-sm">All done</button>
+        <button @click="$store.todo.dispatch('allDone', state_list)" type="button" name="button" class="btn btn-success btn-sm">All done</button>
       </form>
 
       <!-- Filter panel -->
@@ -71,7 +71,7 @@
             <div id="description" :class="{done: todo.done}">{{todo.description}}</div><br>
             <div id="date">{{todo.date}}</div>
             <span class="badge badge-info" id="priority">{{todo.priority}}</span>
-            <button @click="$store.todo.actions.removeTodo(todo, state_list)" type="button" name="button" class="btn btn-danger btn-sm">Remove</button>
+            <button @click="$store.todo.dispatch('removeTodo', {todo, state_list})" type="button" name="button" class="btn btn-danger btn-sm">Remove</button>
           </li>
         </ul>
       </div>

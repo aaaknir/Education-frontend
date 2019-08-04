@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import store from './store/index'
+import store from './store/index.js'
 import App from './App.vue'
 import AppStartScreen from './components/StartScreen.vue';
 import AppGame from './components/Game.vue';

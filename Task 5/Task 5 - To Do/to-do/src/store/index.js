@@ -1,7 +1,6 @@
 import Vue from 'vue'
-import 'es6-promise/auto';
 import Vuex from 'vuex';
-import todo from './modules/todo';
+import todo from './modules/todo.js';
 
 Vue.use(Vuex);
 
