@@ -43,5 +43,19 @@ export default {
     removeTodo(context, {todo, state_list}) {
       context.commit('removeTodo', {todo, state_list})
     }
+  },
+  getters: {
+    newTodo(){
+      return this.state.new_to.new_todo;
+    },
+    newTodoDate(){
+      return this.state.new_to.new_todo_date;
+    },
+    newTodoDescription(){
+      return this.state.new_to.new_todo_description;
+    },
+    newTodoPriority(){
+      return this.state.new_to.new_todo_priority;
+    }
   }
 }

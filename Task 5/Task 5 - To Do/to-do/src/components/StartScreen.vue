@@ -94,16 +94,16 @@
         },
         computed: {
             newToDo() {
-                return this.$store.state.new_todo;
+                return this.$store.getters.newTodo;
             },
             newToDoDescription() {
-                return this.$store.todo.state.new_todo_description;
+                return this.$store.getters.newTodoDescription;
             },
             newToDoPriority() {
-                return this.$store.todo.state.new_todo_priority;
+                return this.$store.getters.newTodoPriority;
             },
             newToDoDate() {
-                return this.$store.todo.state.new_todo_date;
+                return this.$store.getters.newTodoDate;
             }
         },
         methods: {
