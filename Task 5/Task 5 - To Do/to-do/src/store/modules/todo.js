@@ -45,17 +45,17 @@ export default {
     }
   },
   getters: {
-    newTodo(){
-      return this.state.new_to.new_todo;
+    newTodo(state){
+      return state.new_to.new_todo;
     },
-    newTodoDate(){
-      return this.state.new_to.new_todo_date;
+    newTodoDate(state){
+      return state.new_to.new_todo_date;
     },
-    newTodoDescription(){
-      return this.state.new_to.new_todo_description;
+    newTodoDescription(state){
+      return state.new_to.new_todo_description;
     },
-    newTodoPriority(){
-      return this.state.new_to.new_todo_priority;
+    newTodoPriority(state){
+      return state.new_to.new_todo_priority;
     }
   }
 }

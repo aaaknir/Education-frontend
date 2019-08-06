@@ -39,17 +39,17 @@
       <button class="btn btn-sm btn-warning" @click="postPost" id="button-axios">Axios</button>
 
       <!-- Form of adding todos -->
-      <form @submit.prevent="$store.todo.dispatch('addTodo', state_list)">
-        <input maxlength="51" class="form-control-sm" v-model="newToDo" type="text" name="new_todo" placeholder="Name Todo" id="new_todo"><label for="new_todo"></label>
-        <input maxlength="51" class="form-control-sm" v-model="newToDoDescription" type="text" name="new_todo_description" placeholder="Describe Todo" id="new_todo_description"><label for="new_todo_description"></label>
-        <select class="form-control" v-model="newToDoPriority" type="" name="new_todo_priority" id="new_todo_priority">
+      <form @submit.prevent="addNewTodo(state_list)">
+        <input maxlength="51" class="form-control-sm" v-model="new_to_com.new_todo_com" type="text" name="new_todo" placeholder="Name Todo" id="new_todo"><label for="new_todo"></label>
+        <input maxlength="51" class="form-control-sm" v-model="new_to_com.new_todo_description_com" type="text" name="new_todo_description" placeholder="Describe Todo" id="new_todo_description"><label for="new_todo_description"></label>
+        <select class="form-control" v-model="new_to_com.new_todo_priority_com" type="" name="new_todo_priority" id="new_todo_priority">
           <option>important</option>
           <option>middle</option>
           <option>none</option>
         </select><label for="new_todo_priority"></label>
-        <label for="new_todo_date">Deadline</label><input class="form-control-sm" v-model="newToDoDate" type="date" name="new_todo_date" id="new_todo_date">
+        <label for="new_todo_date">Deadline</label><input class="form-control-sm" v-model="new_to_com.new_todo_date_com" type="date" name="new_todo_date" id="new_todo_date">
         <button type="submit" name="button" class="btn btn-primary btn-sm">Add</button>
-        <button @click="$store.todo.dispatch('allDone', state_list)" type="button" name="button" class="btn btn-success btn-sm">All done</button>
+        <button @click="allTodoDone(state_list)" type="button" name="button" class="btn btn-success btn-sm">All done</button>
       </form>
 
       <!-- Filter panel -->
@@ -71,7 +71,7 @@
             <div id="description" :class="{done: todo.done}">{{todo.description}}</div><br>
             <div id="date">{{todo.date}}</div>
             <span class="badge badge-info" id="priority">{{todo.priority}}</span>
-            <button @click="$store.todo.dispatch('removeTodo', {todo, state_list})" type="button" name="button" class="btn btn-danger btn-sm">Remove</button>
+            <button @click="removeNewTodo(todo, state_list)" type="button" name="button" class="btn btn-danger btn-sm">Remove</button>
           </li>
         </ul>
       </div>
@@ -87,24 +87,22 @@
         data() {
             return {
                 new_list: '',
+                new_to_com: {
+                    new_todo_com: '',
+                    new_todo_description_com: '',
+                    new_todo_date_com: '',
+                    new_todo_priority_com: '',
+                },
                 lists: [],
                 state_list: null,
                 filter: 'all'
             }
         },
-        computed: {
-            newToDo() {
-                return this.$store.getters.newTodo;
-            },
-            newToDoDescription() {
-                return this.$store.getters.newTodoDescription;
-            },
-            newToDoPriority() {
-                return this.$store.getters.newTodoPriority;
-            },
-            newToDoDate() {
-                return this.$store.getters.newTodoDate;
-            }
+        created() {
+            this.new_to_com.new_todo_com = this.$store.getters.newTodo;
+            this.new_to_com.new_todo_description_com =  this.$store.getters.newTodoDescription;
+            this.new_to_com.new_todo_priority_com =  this.$store.getters.newTodoPriority;
+            this.new_to_com.new_todo_date_com = this.$store.getters.newTodoDate;
         },
         methods: {
             chooseList(list) {
@@ -141,6 +139,15 @@
                 const str = JSON.stringify(this.lists);
                 axios.post('http://localhost:8081/', str)
                     .then(response => (this.lists = response));
+            },
+            addNewTodo(state_list) {
+                this.$store.dispatch('addTodo', state_list);
+            },
+            allTodoDone(state_list) {
+                this.$store.todo.dispatch('allDone', state_list);
+            },
+            removeNewTodo(todo, state_list) {
+                this.$store.todo.dispatch('removeTodo', {todo, state_list});
             }
         }
     }
