@@ -18,7 +18,7 @@ export default {
       state.lists.splice(list_index, 1);
     },
     addTodo(state, new_to) {
-      state.lists[new_to.new_todo_number].todos.push({
+      new_to.new_todo_number.todos.push({
         title: new_to.new_todo,
         description: new_to.new_todo_description,
         date: new_to.new_todo_date,
@@ -27,13 +27,13 @@ export default {
       });
     },
     allDone(state, state_list) {
-      state.lists[state_list].todos.forEach(todo => {
+      state_list.todos.forEach(todo => {
         todo.done = true;
       });
     },
     removeTodo(state, remove) {
-      const todo_index = state.lists[remove.num].todos.indexOf(remove.todo);
-      state.lists[remove.num].todos.splice(todo_index, 1);
+      const todo_index = remove.num.todos.indexOf(remove.todo);
+      remove.num.todos.splice(todo_index, 1);
     }
   },
 
@@ -58,18 +58,6 @@ export default {
   getters: {
     allLists(state){
       return state.lists;
-    },
-    allTodos (state, filtered) {
-      const list = filtered.list;
-      switch (filtered.filter) {
-        case 'all': return state.lists[list].todos;
-        case 'active': return state.lists[list].todos.filter(todo => !todo.done);
-        case 'completed': return state.lists[list].todos.filter(todo => todo.done);
-        case 'important': return state.lists[list].todos.filter(todo => todo.priority === this.filter);
-        case 'middle': return state.lists[list].todos.filter(todo => todo.priority === this.filter);
-        case 'none': return state.lists[list].todos.filter(todo => todo.priority === this.filter);
-        default: return state.lists[list].todos;
-      }
     }
   }
 }

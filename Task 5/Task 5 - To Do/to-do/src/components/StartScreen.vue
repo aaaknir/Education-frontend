@@ -115,11 +115,15 @@
                     .then(response => (this.lists = response));
             },
             todoFiltered (list) {
-                let filtered = {
-                    filter: this.filter,
-                    list: list
-                };
-                this.$store.getters.allTodos(filtered);
+                switch (this.filter) {
+                    case 'all': return list.todos;
+                    case 'active': return list.todos.filter(todo => !todo.done);
+                    case 'completed': return list.todos.filter(todo => todo.done);
+                    case 'important': return list.todos.filter(todo => todo.priority === this.filter);
+                    case 'middle': return list.todos.filter(todo => todo.priority === this.filter);
+                    case 'none': return list.todos.filter(todo => todo.priority === this.filter);
+                    default: return list.todos;
+                }
             },
             addNewTodo(state_list) {
                 if (this.new_todo && this.new_todo_description && this.new_todo_date && this.new_todo_priority) {
@@ -138,14 +142,14 @@
                 }
             },
             allTodoDone(state_list) {
-                this.$store.todo.dispatch('allDone', state_list);
+                this.$store.dispatch('allDone', state_list);
             },
             removeNewTodo(todo, state_list) {
                 let remove = {
                     todo: todo,
                     num: state_list
                 };
-                this.$store.todo.dispatch('removeTodo', remove);
+                this.$store.dispatch('removeTodo', remove);
             }
         }
     }
