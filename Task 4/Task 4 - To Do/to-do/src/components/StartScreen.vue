@@ -87,7 +87,7 @@
         data() {
             return {
                 lists: [],
-                new_list: '',аа
+                new_list: '',
                 new_to: {
                     new_todo: '',
                     new_todo_description: '',
@@ -141,7 +141,6 @@
                     this.new_todo_description = '';
                     this.new_todo_date = '';
                     this.new_todo_priority = '';
-                    console.log(this.type);
                 }
             },
             removeTodo(todo) {
