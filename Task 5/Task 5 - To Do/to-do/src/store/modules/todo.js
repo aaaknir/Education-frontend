@@ -1,61 +1,75 @@
 export default {
   state: {
-    new_to: {
-      new_todo: '',
-      new_todo_description: '',
-      new_todo_date: '',
-      new_todo_priority: '',
-    }
+    lists: []
   },
+
   mutations: {
-    addTodo(state, state_list) {
-      if (state.new_todo && state.new_todo_description && state.new_todo_date && state.new_todo_priority) {
-        state_list.todos.push({
-          title: state.new_todo,
-          description: state.new_todo_description,
-          date: state.new_todo_date,
-          priority: state.new_todo_priority,
-          done: false
+    addList(state, new_list) {
+      let todos = [];
+      if (new_list) {
+        state.lists.push({
+          title: new_list,
+          todos: todos
         });
-        state.new_todo = '';
-        state.new_todo_description = '';
-        state.new_todo_date = '';
-        state.new_todo_priority = '';
       }
     },
+    removeList(state, list) {
+      const list_index = state.lists.indexOf(list);
+      state.lists.splice(list_index, 1);
+    },
+    addTodo(state, new_to) {
+      state.lists[new_to.new_todo_number].todos.push({
+        title: new_to.new_todo,
+        description: new_to.new_todo_description,
+        date: new_to.new_todo_date,
+        priority: new_to.new_todo_priority,
+        done: false
+      });
+    },
     allDone(state, state_list) {
-      state_list.todos.forEach(todo => {
+      state.lists[state_list].todos.forEach(todo => {
         todo.done = true;
       });
     },
-    removeTodo(state, {todo, state_list}) {
-      const todo_index = state_list.todos.indexOf(todo);
-      state_list.todos.splice(todo_index, 1);
+    removeTodo(state, remove) {
+      const todo_index = state.lists[remove.num].todos.indexOf(remove.todo);
+      state.lists[remove.num].todos.splice(todo_index, 1);
     }
   },
+
   actions:{
-    addTodo(context, state_list) {
-      context.commit('addTodo', state_list)
+    addList(context, new_list) {
+      context.commit('addList', new_list)
+    },
+    removeList(context, list) {
+      context.commit('removeList', list)
+    },
+    addTodo(context, new_to) {
+      context.commit('addTodo', new_to)
     },
     allDone(context, state_list) {
       context.commit('allDone', state_list)
     },
-    removeTodo(context, {todo, state_list}) {
-      context.commit('removeTodo', {todo, state_list})
+    removeTodo(context, remove) {
+      context.commit('removeTodo', remove)
     }
   },
+
   getters: {
-    newTodo(state){
-      return state.new_to.new_todo;
+    allLists(state){
+      return state.lists;
     },
-    newTodoDate(state){
-      return state.new_to.new_todo_date;
-    },
-    newTodoDescription(state){
-      return state.new_to.new_todo_description;
-    },
-    newTodoPriority(state){
-      return state.new_to.new_todo_priority;
+    allTodos (state, filtered) {
+      const list = filtered.list;
+      switch (filtered.filter) {
+        case 'all': return state.lists[list].todos;
+        case 'active': return state.lists[list].todos.filter(todo => !todo.done);
+        case 'completed': return state.lists[list].todos.filter(todo => todo.done);
+        case 'important': return state.lists[list].todos.filter(todo => todo.priority === this.filter);
+        case 'middle': return state.lists[list].todos.filter(todo => todo.priority === this.filter);
+        case 'none': return state.lists[list].todos.filter(todo => todo.priority === this.filter);
+        default: return state.lists[list].todos;
+      }
     }
   }
 }

@@ -5,18 +5,18 @@
     <div class="left-column">
 
       <!-- Form of adding lists -->
-      <form @submit.prevent="addList">
+      <form @submit.prevent="addNewList">
         <input maxlength="51" class="form-control-sm" v-model="new_list" type="text" name="new_list" placeholder="Enter your To Do list name..." id="new_list"><label for="new_list"></label>
         <button type="submit" name="button" class="btn btn-primary">Add list</button>
       </form>
 
       <!-- Displaying list of lists -->
-      <div id="lists-display" v-for="list in lists" :key="list.id ">
+      <div id="lists-display" v-for="list in this.$store.getters.allLists" :key="list.id ">
         <div id="list" @click="chooseList(list)">
 
           <!-- Remove list -->
           <div id="list-remove">
-            <button @click="removeList(list)" type="button" name="button" class="btn btn-danger btn-sm">&times;</button>
+            <button @click="removeNewList(list)" type="button" name="button" class="btn btn-danger btn-sm">&times;</button>
           </div>
 
           <!-- Displaying list name -->
@@ -40,14 +40,14 @@
 
       <!-- Form of adding todos -->
       <form @submit.prevent="addNewTodo(state_list)">
-        <input maxlength="51" class="form-control-sm" v-model="new_to_com.new_todo_com" type="text" name="new_todo" placeholder="Name Todo" id="new_todo"><label for="new_todo"></label>
-        <input maxlength="51" class="form-control-sm" v-model="new_to_com.new_todo_description_com" type="text" name="new_todo_description" placeholder="Describe Todo" id="new_todo_description"><label for="new_todo_description"></label>
-        <select class="form-control" v-model="new_to_com.new_todo_priority_com" type="" name="new_todo_priority" id="new_todo_priority">
+        <input maxlength="51" class="form-control-sm" v-model="new_todo" type="text" name="new_todo" placeholder="Name Todo" id="new_todo"><label for="new_todo"></label>
+        <input maxlength="51" class="form-control-sm" v-model="new_todo_description" type="text" name="new_todo_description" placeholder="Describe Todo" id="new_todo_description"><label for="new_todo_description"></label>
+        <select class="form-control" v-model="new_todo_priority" type="" name="new_todo_priority" id="new_todo_priority">
           <option>important</option>
           <option>middle</option>
           <option>none</option>
         </select><label for="new_todo_priority"></label>
-        <label for="new_todo_date">Deadline</label><input class="form-control-sm" v-model="new_to_com.new_todo_date_com" type="date" name="new_todo_date" id="new_todo_date">
+        <label for="new_todo_date">Deadline</label><input class="form-control-sm" v-model="new_todo_date" type="date" name="new_todo_date" id="new_todo_date">
         <button type="submit" name="button" class="btn btn-primary btn-sm">Add</button>
         <button @click="allTodoDone(state_list)" type="button" name="button" class="btn btn-success btn-sm">All done</button>
       </form>
@@ -87,52 +87,26 @@
         data() {
             return {
                 new_list: '',
-                new_to_com: {
-                    new_todo_com: '',
-                    new_todo_description_com: '',
-                    new_todo_date_com: '',
-                    new_todo_priority_com: '',
-                },
-                lists: [],
+                new_todo: '',
+                new_todo_description: '',
+                new_todo_date: '',
+                new_todo_priority: '',
                 state_list: null,
                 filter: 'all'
             }
-        },
-        created() {
-            this.new_to_com.new_todo_com = this.$store.getters.newTodo;
-            this.new_to_com.new_todo_description_com =  this.$store.getters.newTodoDescription;
-            this.new_to_com.new_todo_priority_com =  this.$store.getters.newTodoPriority;
-            this.new_to_com.new_todo_date_com = this.$store.getters.newTodoDate;
         },
         methods: {
             chooseList(list) {
                 this.state_list = list;
             },
-            addList() {
-                console.log(this.$store);
-                let todos = [];
+            addNewList() {
                 if (this.new_list) {
-                    this.lists.push({
-                        title: this.new_list,
-                        todos: todos
-                    });
+                    this.$store.dispatch('addList', this.new_list);
                     this.new_list = '';
                 }
             },
-            todoFiltered (list) {
-                switch (this.filter) {
-                    case 'all': return list.todos;
-                    case 'active': return list.todos.filter(todo => !todo.done);
-                    case 'completed': return list.todos.filter(todo => todo.done);
-                    case 'important': return list.todos.filter(todo => todo.priority === this.filter);
-                    case 'middle': return list.todos.filter(todo => todo.priority === this.filter);
-                    case 'none': return list.todos.filter(todo => todo.priority === this.filter);
-                    default: return list.todos;
-                }
-            },
-            removeList(list) {
-                const list_index = this.lists.indexOf(list);
-                this.lists.splice(list_index, 1);
+            removeNewList(list) {
+                this.$store.dispatch('removeList', list);
                 this.state_list = null;
             },
             postPost() {
@@ -140,14 +114,38 @@
                 axios.post('http://localhost:8081/', str)
                     .then(response => (this.lists = response));
             },
+            todoFiltered (list) {
+                let filtered = {
+                    filter: this.filter,
+                    list: list
+                };
+                this.$store.getters.allTodos(filtered);
+            },
             addNewTodo(state_list) {
-                this.$store.dispatch('addTodo', state_list);
+                if (this.new_todo && this.new_todo_description && this.new_todo_date && this.new_todo_priority) {
+                    let new_to = {
+                        new_todo: this.new_todo,
+                        new_todo_description: this.new_todo_description,
+                        new_todo_date: this.new_todo_date,
+                        new_todo_priority: this.new_todo_priority,
+                        new_todo_number: state_list
+                    };
+                    this.$store.dispatch('addTodo', new_to);
+                    this.new_todo = '';
+                    this.new_todo_description = '';
+                    this.new_todo_date = '';
+                    this.new_todo_priority = '';
+                }
             },
             allTodoDone(state_list) {
                 this.$store.todo.dispatch('allDone', state_list);
             },
             removeNewTodo(todo, state_list) {
-                this.$store.todo.dispatch('removeTodo', {todo, state_list});
+                let remove = {
+                    todo: todo,
+                    num: state_list
+                };
+                this.$store.todo.dispatch('removeTodo', remove);
             }
         }
     }
