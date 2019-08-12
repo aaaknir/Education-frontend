@@ -14,6 +14,10 @@
 <style lang="less">
     * {
         font-family: 'Red Hat Display', sans-serif;
+        justify-content: center;
+        align-items: center;
+        margin: 0 auto;
+        height: 100%;
     }
     .container, .block-panel {
         position: absolute;
@@ -35,7 +39,6 @@
         border-radius: 5px;
     }
     .container header span {
-        position: absolute;
         font-style: normal;
         font-weight: bold;
         font-size: 20px;

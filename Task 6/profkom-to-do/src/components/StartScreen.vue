@@ -2,27 +2,50 @@
     <div>
         <!-- Block panel -->
         <div class="block-panel">
-            <div class="block-card" v-for="element in this.$store.getters.checkBlocks"><span>{{element.title}}</span></div>
+            <div class="block-card" v-for="element in this.$store.getters.checkBlocks" :key="element.id" @click="chooseBlock(element.title)">
+                <span>{{element.title}}</span>
+            </div>
         </div>
 
-        <div class="container">
+        <div class="container" v-if="this.block_name != 'BLOCK NAME'">
             <!-- Header with block's name -->
             <header>
-                <span>BLOCK NAME</span>
+                <span>{{this.block_name}}</span>
             </header>
 
             <!-- Customize progress bar -->
-            <div class="progress-circle">
-                <span>48%</span>
+            <div class="progress-ring">
+                <div class="progress-ring-circle">
+                    <span>48%</span>
+                </div>
             </div>
-            <button class="button-more" @click="this.$store.dispatch('changeStatePosition', 'block')"><span>MORE INFORMATION ></span></button>
+            <button class="button-more" @click="changeState"><span>MORE INFORMATION ></span></button>
         </div>
+        <div class="container" v-else></div>
     </div>
 </template>
 
 <script>
     export default {
-        name: "AppStartScreen"
+        name: "AppStartScreen",
+        data() {
+            return {
+                block_name: 'BLOCK NAME',
+                radius: 52
+            }
+        },
+        methods: {
+            chooseBlock(el) {
+                this.block_name = el;
+            },
+            changeState() {
+                let block_settings = {
+                    block_state:  'block',
+                    block_name:  this.block_name
+                };
+                this.$store.dispatch('changeStatePosition', block_settings);
+            }
+        }
     }
 </script>
 
@@ -34,7 +57,9 @@
         left: 91px;
     }
     .container header span {
-        margin: 17px 22px 18px 676px;
+        float: right;
+        margin-right: 22px;
+        margin-top: 17px;
     }
     .container button.button-more {
         position: absolute;
@@ -62,22 +87,29 @@
     }
     .container button.button-more:hover {
         box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.25);
+        cursor: pointer;
     }
-    .container div.progress-circle {
+    .container .progress-ring {
         position: absolute;
         width: 400px;
         height: 400px;
-        left: 531px;
+        margin-left: 527px;
         top: 115px;
-        border: 20px solid #DAF7E8;
+        margin-right: 91px;
+        border: #DAF7E8 solid 40px;
+        border-radius: 225px;
+    }
+    .container .progress-ring-circle {
+        position: absolute;
+        width: 400px;
+        height: 400px;
+        background: #4AD991;
+        border: 1px solid #37A66E;
         border-radius: 225px
     }
-    .container div.progress-circle span{
-        width: 210px;
-        height: 132px;
-        left: 991px;
-        top: 319px;
+    .container .progress-ring-circle span{
         font-style: normal;
+        padding-left: 95px;
         font-weight: bold;
         font-size: 100px;
         line-height: 132px;
@@ -96,5 +128,12 @@
         text-align: center;
         color: #C4C4C4;
         padding-top: 17px;
+        border-radius: 5px;
+    }
+    .block-panel div.block-card:hover {
+        cursor: pointer;
+        background: #FFCA83;
+        box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.25);
+        color: #FFFBF5;
     }
 </style>

@@ -2,47 +2,47 @@ export default {
     state: {
         blocks: [
             {
-                title: 'Профорги',
+                title: 'ПРОФОРГИ',
                 lists: []
             },
             {
-                title: 'Спонсоры',
+                title: 'СПОНСОРЫ',
                 lists: []
             },
             {
-                title: 'Закупки',
+                title: 'ЗАКУПКИ',
                 lists: []
             },
             {
-                title: 'Информирование',
+                title: 'ИНФОРМИРОВАНИЕ',
                 lists: []
             },
             {
-                title: 'Техники',
+                title: 'ТЕХНИКИ',
                 lists: []
             },
             {
-                title: 'Медиа',
+                title: 'МЕДИА',
                 lists: []
             },
             {
-                title: 'Дизайн',
+                title: 'ДИЗАЙН',
                 lists: []
             },
             {
-                title: 'Склад',
+                title: 'СКЛАД',
                 lists: []
             },
             {
-                title: 'Мат. Помощь',
+                title: 'МАТ. ПОМОЩЬ',
                 lists: []
             },
             {
-                title: 'Хозяюшки',
+                title: 'ХОЗЯЮШКИ',
                 lists: []
             },
             {
-                title: 'Декораторы',
+                title: 'ДЕКОРАТОРЫ',
                 lists: []
             },
             {
@@ -50,11 +50,11 @@ export default {
                 lists: []
             },
             {
-                title: 'Спорт',
+                title: 'СПОРТ',
                 lists: []
             },
             {
-                title: 'Работа в ДСЛ',
+                title: 'РАБОТА В ДСЛ',
                 lists: []
             },
             {
@@ -62,7 +62,7 @@ export default {
                 lists: []
             },
             {
-                title: 'Досуг Профкома',
+                title: 'ДОСУГ ПРОФКОМА',
                 lists: []
             },
             {
@@ -70,7 +70,7 @@ export default {
                 lists: []
             },
             {
-                title: 'Сценаристы',
+                title: 'СЦЕНАРИСТЫ',
                 lists: []
             },
             {

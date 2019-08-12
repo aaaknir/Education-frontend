@@ -16,12 +16,12 @@ export default new Vuex.Store({
     },
     mutations: {
         changeStatePosition (state, new_state_position) {
-            state.state_position = new_state_position;
+            state.state_position = new_state_position.block_state;
         }
     },
     actions: {
         changeStatePosition (context, new_state_position) {
-            context.commit('changeStatePosition', new_state_position)
+            context.commit('changeStatePosition', new_state_position);
         }
 
     },
