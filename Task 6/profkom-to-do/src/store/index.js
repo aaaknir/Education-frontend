@@ -22,8 +22,10 @@ export default new Vuex.Store({
     actions: {
         changeStatePosition (context, new_state_position) {
             context.commit('changeStatePosition', new_state_position);
+            if (new_state_position.block_name !== null) {
+                context.dispatch('chooseBlockName', new_state_position.block_name);
+            }
         }
-
     },
     modules: {
         start,

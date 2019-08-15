@@ -3,8 +3,8 @@
         <div class="container">
             <!-- Header with block's name -->
             <header>
-                <span class="home">HOME</span>
-                <span class="block-name">BLOCK NAME - LIST NAME</span>
+                <span class="home" @click="changeState">HOME</span>
+                <span class="block-name"><span>BLOCK NAME</span><span v-if="state_list != null"> - {{state_list.title}}</span></span>
             </header>
 
             <!-- Customize progress bar -->
@@ -14,41 +14,43 @@
                 </div>
             </div>
 
-            <form id="new-todo">
-                <label><input type="text" placeholder="What do you need to do?" id="new-todo-name" form="new-todo"></label>
-                <label><input type="text" placeholder="Describe your to do" id="new-todo-description" form="new-todo"></label>
-                <label><input type="date" placeholder="Deadline" id="new-todo-date" form="new-todo"></label>
-                <label><select id="new-todo-priority" form="new-todo">
+            <!-- Form's of adding todos -->
+            <form id="new-todo" @submit.prevent="addNewTodo(state_list)">
+                <label><input v-model="new_todo" type="text" placeholder="What do you need to do?" id="new-todo-name" form="new-todo"></label>
+                <label><input v-model="new_todo_description" type="text" placeholder="Describe your to do" id="new-todo-description" form="new-todo"></label>
+                <label><input type="date" placeholder="Deadline" v-model="new_todo_date" id="new-todo-date" form="new-todo"></label>
+                <label><select v-model="new_todo_priority" id="new-todo-priority" form="new-todo">
                     <option>!!!</option>
                     <option>!!</option>
                     <option>!</option>
                     <option>none</option>
                 </select></label>
+                <button type="submit" name="button" id="add-button">+</button>
             </form>
 
             <div class="filter-panel">
                 <span>Choose</span>
-                <button type="button" class="button btn-info button-large">ALL</button>
-                <button type="button" class="button btn-info button-large">DONE</button>
-                <button type="button" class="button btn-info button-large">ACTIVE</button>
-                <button type="button" class="button btn-info button-small important">!!!</button>
-                <button type="button" class="button btn-info button-small middle">!!</button>
-                <button type="button" class="button btn-info button-small easy">!</button>
-                <button type="button" class="button btn-info button-small">!!!</button>
-                <button type="button" class="button btn-info button-large">DATE</button>
+                <button type="button" :class="{active: filter === 'all'}" @click="filter = 'all'" class="button button-large">ALL</button>
+                <button type="button" :class="{active: filter === 'done'}" @click="filter = 'done'" class="button button-large">DONE</button>
+                <button type="button" :class="{active: filter === 'active'}" @click="filter = 'active'" class="button button-large">ACTIVE</button>
+                <button type="button" :class="{active: filter === '!!!'}" @click="filter = '!!!'" class="button button-small important">!!!</button>
+                <button type="button" :class="{active: filter === '!!'}" @click="filter = '!!'" class="button button-small middle">!!</button>
+                <button type="button" :class="{active: filter === '!'}" @click="filter = '!'" class="button button-small easy">!</button>
+                <button type="button" :class="{active: filter === 'none'}" @click="filter = 'none'" class="button button-small">none</button>
+                <button type="button" :class="{active: filter === 'date'}" @click="filter = 'date'" class="button button-large">DATE</button>
             </div>
 
-            <div class="todos-panel">
-                <div class="todo">
-                    <div @click="show = !show" class="todo-short">
-                        <input type="checkbox">
-                        <span>Task 1</span>
-                        <button type="button">x</button>
+            <div class="todos-panel" v-if="state_list != null">
+                <div class="todo" v-for="todo in todoFiltered(state_list)" :key="todo.id">
+                    <div class="todo-short">
+                        <input type="checkbox" v-model="todo.done">
+                        <span @click="show = !show" class="block-card-short">{{todo.title}}</span>
+                        <button @click="removeNewTodo(todo, state_list)" class="remove" type="button">x</button>
                     </div>
                     <div v-if="!show" class="todo-long">
-                        <span>Task 1 Desc</span>
-                        <button type="button">Date</button>
-                        <button type="button">Priority</button>
+                        <span class="block-card-long">{{todo.description}}</span>
+                        <button class="date" type="button">{{todo.date}}</button>
+                        <button class="priority" type="button">{{todo.priority}}</button>
                     </div>
                 </div>
             </div>
@@ -56,8 +58,24 @@
 
         <!-- Block panel -->
         <div class="block-panel">
-            <div class="block-card" v-for="element in lists" :key="element.id">
-                <span>{{element.title}}</span>
+            <!-- List's form -->
+            <form @submit.prevent="addNewList">
+                    <input maxlength="51" class="form-control-sm" v-model="new_list" type="text" name="new_list" placeholder="Enter your To Do list name..." id="new_list"><label for="new_list"></label>
+                    <button type="submit" name="button" class="btn btn-primary">Add list</button>
+            </form>
+            <div class="block-card" v-for="list in this.$store.getters.allLists" :key="list.id ">
+                <div @click="chooseList(list)">
+
+                    <!-- Remove list -->
+                    <div>
+                        <button @click="removeNewList(list)" type="button" name="button" class="btn btn-danger btn-sm">&times;</button>
+                    </div>
+
+                    <!-- Displaying list name -->
+                    <div>
+                        <span>{{list.title}}</span>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -68,7 +86,71 @@
         name: "AppBlockScreen",
         data() {
             return {
-                show: true
+                show: true,
+                new_list: '',
+                new_todo: '',
+                new_todo_description: '',
+                new_todo_date: '',
+                new_todo_priority: '',
+                state_list: null,
+                filter: 'all'
+            }
+        },
+        methods: {
+            changeState() {
+                let block_settings = {
+                    block_state:  'start',
+                    block_name: null
+                };
+                this.$store.dispatch('changeStatePosition', block_settings);
+            },
+            chooseList(list) {
+                this.state_list = list;
+            },
+            addNewList() {
+                if (this.new_list) {
+                    this.$store.dispatch('addList', this.new_list);
+                    this.new_list = '';
+                }
+            },
+            removeNewList(list) {
+                this.$store.dispatch('removeList', list);
+                this.state_list = null;
+            },
+            todoFiltered (list) {
+                switch (this.filter) {
+                    case 'all': return list.todos;
+                    case 'active': return list.todos.filter(todo => !todo.done);
+                    case 'done': return list.todos.filter(todo => todo.done);
+                    case '!!!': return list.todos.filter(todo => todo.priority === this.filter);
+                    case '!!': return list.todos.filter(todo => todo.priority === this.filter);
+                    case '!': return list.todos.filter(todo => todo.priority === this.filter);
+                    case 'none': return list.todos.filter(todo => todo.priority === this.filter);
+                    default: return list.todos;
+                }
+            },
+            addNewTodo(state_list) {
+                if (this.new_todo && this.new_todo_description && this.new_todo_date && this.new_todo_priority) {
+                    let new_to = {
+                        new_todo: this.new_todo,
+                        new_todo_description: this.new_todo_description,
+                        new_todo_date: this.new_todo_date,
+                        new_todo_priority: this.new_todo_priority,
+                        new_todo_number: state_list
+                    };
+                    this.$store.dispatch('addTodo', new_to);
+                    this.new_todo = '';
+                    this.new_todo_description = '';
+                    this.new_todo_date = '';
+                    this.new_todo_priority = '';
+                }
+            },
+            removeNewTodo(todo, state_list) {
+                let remove = {
+                    todo: todo,
+                    num: state_list
+                };
+                this.$store.dispatch('removeTodo', remove);
             }
         }
     }
@@ -87,6 +169,22 @@
         text-align: center;
         color: #C4C4C4;
         padding-top: 17px;
+        border-radius: 5px;
+    }
+    .block-panel form {
+        height: 55px;
+        background: #FFE2E6;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 20px;
+        line-height: 26px;
+        text-align: center;
+        color: #C4C4C4;
+        padding-top: 17px;
+        border-radius: 5px;
+        width: 250px;
+        margin-left: 21px;
+        margin-top: 30px;
         border-radius: 5px;
     }
     .block-panel div.block-card:hover {
@@ -110,6 +208,9 @@
         float: left;
         margin-left: 22px;
         margin-top: 17px;
+    }
+    .container header span:hover {
+        cursor: pointer;
     }
     .container .progress-ring {
         position: absolute;
@@ -147,6 +248,19 @@
         background: #FFCA83;
         box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.25);
         border-radius: 5px;
+    }
+    .container form button#add-button {
+        width: 50px;
+        height: 19px;
+        margin-left: 247px;
+        background: #4AD991;
+        border-radius: 10px;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 20px;
+        line-height: 26px;
+        text-align: center;
+        color: #E8E7FF;
     }
     .container form input#new-todo-name, .container form input#new-todo-description {
         width: 483px;
@@ -248,6 +362,8 @@
         border: 1px solid #DBDADA;
         box-sizing: border-box;
         border-radius: 0 0 5px 5px;
+        overflow: auto;
+        overflow-x: hidden;
     }
     .container .todos-panel .todo-short {
         width: 785px;
@@ -258,7 +374,6 @@
         font-weight: bold;
         font-size: 16px;
         line-height: 21px;
-        text-align: center;
         color: #ECEBFF;
     }
     .container .todos-panel .todo-long {
@@ -267,6 +382,37 @@
         background: #FFFFFF;
         border: 1px solid #83C3FF;
         box-sizing: border-box;
-        border-radius: 0px 0px 5px 5px;
+        border-radius: 0 0 5px 5px;
+    }
+    .container .todos-panel input[type=checkbox] {
+        width: 18px;
+        height: 18px;
+        margin-top: 6px;
+        margin-left: 10px;
+    }
+    .container .todos-panel .block-card-short {
+        margin-left: 20px;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 16px;
+        line-height: 21px;
+        color: #ECEBFF;
+    }
+    .container .todos-panel .remove {
+        float: right;
+        width: 18px;
+        height: 18px;
+        margin-right: 10px;
+        margin-top: 6px;
+        background: #FF7285;
+        border-radius: 5px;
+        outline: none;
+        border: none;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 20px;
+        line-height: 26px;
+        text-align: center;
+        color: #E8E7FF
     }
 </style>

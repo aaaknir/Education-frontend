@@ -14,8 +14,6 @@
 <style lang="less">
     * {
         font-family: 'Red Hat Display', sans-serif;
-        justify-content: center;
-        align-items: center;
         margin: 0 auto;
         height: 100%;
     }

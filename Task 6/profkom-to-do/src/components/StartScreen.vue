@@ -7,7 +7,7 @@
             </div>
         </div>
 
-        <div class="container" v-if="this.block_name != 'BLOCK NAME'">
+        <div class="container" v-if="block_name != 'BLOCK NAME'">
             <!-- Header with block's name -->
             <header>
                 <span>{{this.block_name}}</span>
@@ -21,7 +21,9 @@
             </div>
             <button class="button-more" @click="changeState"><span>MORE INFORMATION ></span></button>
         </div>
-        <div class="container" v-else></div>
+        <div class="container" v-else>
+            <div class="letter">Выберите блок из левой панели блоков</div>
+        </div>
     </div>
 </template>
 
@@ -72,7 +74,7 @@
         border-radius: 10px;
         outline: none;
     }
-    .container button.button-more span{
+    .container button.button-more span {
         position: absolute;
         width: 206px;
         height: 52px;
@@ -84,6 +86,15 @@
         line-height: 26px;
         text-align: center;
         color: #ECEBFF;
+    }
+    .container .letter {
+        margin-top: 400px;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 24px;
+        line-height: 26px;
+        text-align: center;
+        color: #a0a0b3;
     }
     .container button.button-more:hover {
         box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.25);
