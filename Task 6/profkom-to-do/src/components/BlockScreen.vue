@@ -25,7 +25,7 @@
                     <option>!</option>
                     <option>none</option>
                 </select></label>
-                <button type="submit" name="button" id="add-button">+</button>
+                <button type="submit" name="button" id="add-button"><span>+</span></button>
             </form>
 
             <div class="filter-panel">
@@ -42,10 +42,10 @@
 
             <div class="todos-panel" v-if="state_list != null">
                 <div class="todo" v-for="todo in todoFiltered(state_list)" :key="todo.id">
-                    <div class="todo-short">
-                        <input type="checkbox" v-model="todo.done">
-                        <span @click="show = !show" class="block-card-short">{{todo.title}}</span>
-                        <button @click="removeNewTodo(todo, state_list)" class="remove" type="button">x</button>
+                    <div class="todo-short" @click="show = !show">
+                        <input type="checkbox" v-model="todo.done" @click="show = (snow)">
+                        <span class="block-card-short">{{todo.title}}</span>
+                        <button @click="removeNewTodo(todo, state_list)" class="remove" type="button"><span>x</span></button>
                     </div>
                     <div v-if="!show" class="todo-long">
                         <span class="block-card-long">{{todo.description}}</span>
@@ -60,20 +60,22 @@
         <div class="block-panel">
             <!-- List's form -->
             <form @submit.prevent="addNewList">
+                <div>
                     <input maxlength="51" class="form-control-sm" v-model="new_list" type="text" name="new_list" placeholder="Enter your To Do list name..." id="new_list"><label for="new_list"></label>
                     <button type="submit" name="button" class="btn btn-primary">Add list</button>
+                </div>
             </form>
             <div class="block-card" v-for="list in this.$store.getters.allLists" :key="list.id ">
                 <div @click="chooseList(list)">
 
-                    <!-- Remove list -->
-                    <div>
-                        <button @click="removeNewList(list)" type="button" name="button" class="btn btn-danger btn-sm">&times;</button>
+                    <!-- Displaying list name -->
+                    <div class="block-card-name">
+                        <span>{{list.title}}</span>
                     </div>
 
-                    <!-- Displaying list name -->
-                    <div>
-                        <span>{{list.title}}</span>
+                    <!-- Remove list -->
+                    <div class="block-card-remove">
+                        <button @click="removeNewList(list)" type="button" name="button" class="btn btn-danger btn-sm">&times;</button>
                     </div>
                 </div>
             </div>
@@ -160,17 +162,28 @@
     .block-panel {
         left: 1095px;
     }
+
     .block-panel div.block-card {
         background: #FFE2E6;
         font-style: normal;
         font-weight: bold;
         font-size: 20px;
         line-height: 26px;
-        text-align: center;
         color: #C4C4C4;
         padding-top: 17px;
         border-radius: 5px;
     }
+
+    .block-panel div.block-card .block-card-name {
+        margin-left: 20px;
+        margin-top: 5px;
+    }
+
+    .block-panel div.block-card .block-card-remove {
+        margin-left: 215px;
+        margin-top: -70px;
+    }
+
     .block-panel form {
         height: 55px;
         background: #FFE2E6;
@@ -185,8 +198,21 @@
         width: 250px;
         margin-left: 21px;
         margin-top: 30px;
-        border-radius: 5px;
     }
+
+    .block-panel form div {
+        margin-top: -5px;
+    }
+
+    .block-panel form div input {
+        height: 40px;
+    }
+
+    .block-panel form div button {
+        height: 30px;
+        margin-left: 2px;
+    }
+
     .block-panel div.block-card:hover {
         cursor: pointer;
         background: #FF7285;
@@ -262,6 +288,11 @@
         text-align: center;
         color: #E8E7FF;
     }
+    .container form button#add-button span {
+        margin-top: -12px;
+        position: absolute;
+    }
+
     .container form input#new-todo-name, .container form input#new-todo-description {
         width: 483px;
         height: 50px;
@@ -414,5 +445,45 @@
         line-height: 26px;
         text-align: center;
         color: #E8E7FF
+    }
+
+    .container .todos-panel .remove span {
+        margin-top: -15px;
+        margin-left: -4px;
+        position: absolute;
+    }
+    .container .todos-panel .todo-long span {
+        margin-left: 25px;
+        margin-top: -50px;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 16px;
+        line-height: 21px;
+        color: #96B6D5;
+    }
+    .container .todos-panel .todo-long .date {
+        margin-left: 605px;
+        margin-top: 70px;
+        font-size: 16px;
+        line-height: 21px;
+        text-align: center;
+        color: #DAF7E8;
+        width: 70px;
+        height: 30px;
+        background: #4AD991;
+        border-radius: 5px;
+    }
+    .container .todos-panel .todo-long .priority {
+        width: 30px;
+        height: 30px;
+        margin-left: 20px;
+        background: #FFCA83;
+        border-radius: 5px;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 16px;
+        line-height: 21px;
+        text-align: center;
+        color: #FFF4E5;
     }
 </style>
