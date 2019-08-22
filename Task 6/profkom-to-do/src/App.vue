@@ -16,7 +16,6 @@
         font-family: 'Red Hat Display', sans-serif;
         margin: 0;
         padding: 0;
-        height: 100%;
     }
     .container, .block-panel {
         position: absolute;

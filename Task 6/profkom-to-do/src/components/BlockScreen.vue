@@ -42,12 +42,12 @@
 
             <div class="todos-panel" v-if="state_list != null">
                 <div class="todo" v-for="todo in todoFiltered(state_list)" :key="todo.id">
-                    <div class="todo-short" @click="show = !show">
-                        <input type="checkbox" v-model="todo.done" @click="show = (snow)">
-                        <span class="block-card-short">{{todo.title}}</span>
+                    <div class="todo-short">
+                        <label><input type="checkbox" v-model="todo.done" @click="show = (snow)"></label>
+                        <span class="block-card-short" @click="show = !show">{{todo.title}}</span>
                         <button @click="removeNewTodo(todo, state_list)" class="remove" type="button"><span>x</span></button>
                     </div>
-                    <div v-if="!show" class="todo-long">
+                    <div v-if="!show" class="todo-long" id="new-todo-long">
                         <span class="block-card-long">{{todo.description}}</span>
                         <button class="date" type="button">{{todo.date}}</button>
                         <button class="priority" type="button">{{todo.priority}}</button>
@@ -166,7 +166,6 @@
     .block-panel {
         left: 1095px;
     }
-
     .block-panel div.block-card {
         background: #FFE2E6;
         font-style: normal;
@@ -177,17 +176,14 @@
         padding-top: 17px;
         border-radius: 5px;
     }
-
     .block-panel div.block-card .block-card-name {
         margin-left: 20px;
         margin-top: 5px;
     }
-
     .block-panel div.block-card .block-card-remove {
         margin-left: 215px;
         margin-top: -70px;
     }
-
     .block-panel form {
         height: 55px;
         background: #FFE2E6;
@@ -203,20 +199,16 @@
         margin-left: 21px;
         margin-top: 30px;
     }
-
     .block-panel form div {
         margin-top: -5px;
     }
-
     .block-panel form div input {
         height: 40px;
     }
-
     .block-panel form div button {
         height: 30px;
         margin-left: 2px;
     }
-
     .block-panel div.block-card:hover {
         cursor: pointer;
         background: #FF7285;
@@ -296,7 +288,6 @@
         margin-top: -12px;
         position: absolute;
     }
-
     .container form input#new-todo-name, .container form input#new-todo-description {
         width: 483px;
         height: 50px;
@@ -401,18 +392,20 @@
         overflow-x: hidden;
     }
     .container .todos-panel .todo-short {
+        margin-top: 25px;
         width: 785px;
         height: 30px;
-        margin-top: 25px;
         background: #83C3FF;
         font-style: normal;
         font-weight: bold;
+        margin-left: 20px;
         font-size: 16px;
         line-height: 21px;
         color: #ECEBFF;
     }
     .container .todos-panel .todo-long {
         width: 785px;
+        margin-left: 20px;
         height: 120px;
         background: #FFFFFF;
         border: 1px solid #83C3FF;
