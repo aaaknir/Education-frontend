@@ -78,8 +78,7 @@ export default {
                 lists: []
             }
         ],
-        block_name: 'BLOCK NAME',
-        percent: 0
+        block_name: 'BLOCK NAME'
     },
     mutations: {
         chooseBlockName(state, block_name) {
