@@ -14,7 +14,8 @@
 <style lang="less">
     * {
         font-family: 'Red Hat Display', sans-serif;
-        margin: 0 auto;
+        margin: 0;
+        padding: 0;
         height: 100%;
     }
     .container, .block-panel {
@@ -56,5 +57,13 @@
         margin-top: 30px;
         background: #FFF4E5;
         border-radius: 5px;
+    }
+    ::-webkit-scrollbar {
+        width: 24px;
+    }
+    ::-webkit-scrollbar-thumb {
+        background: #C4C4C4;
+        border-radius: 25px;
+        border: 5px solid white;
     }
 </style>
