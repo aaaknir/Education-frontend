@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="main">
         <!-- Block panel -->
         <div class="block-panel">
             <div class="block-card" v-for="element in this.$store.getters.checkBlocks" :key="element.id" @click="chooseBlock(element.title)">
@@ -7,7 +7,7 @@
             </div>
         </div>
 
-        <div class="container" v-if="block_name != 'BLOCK NAME'">
+        <div class="container" v-if="block_name !== 'BLOCK NAME'">
             <!-- Header with block's name -->
             <header>
                 <span>{{this.block_name}}</span>
@@ -32,8 +32,7 @@
         name: "AppStartScreen",
         data() {
             return {
-                block_name: 'BLOCK NAME',
-                radius: 52
+                block_name: 'BLOCK NAME'
             }
         },
         methods: {
