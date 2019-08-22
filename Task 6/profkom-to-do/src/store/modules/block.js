@@ -78,24 +78,25 @@ export default {
                 lists: []
             }
         ],
-        lists: []
+        block_name: 'BLOCK NAME',
+        percent: 0
     },
     mutations: {
         chooseBlockName(state, block_name) {
-            console.log(state.lists.find(x => x.title === block_name));
+            state.block_name = block_name;
         },
         addList(state, new_list) {
             let todos = [];
             if (new_list) {
-                state.lists.push({
+                state.blocks.find(x => x.title === state.block_name).lists.push({
                     title: new_list,
                     todos: todos
                 });
             }
         },
         removeList(state, list) {
-            const list_index = state.lists.indexOf(list);
-            state.lists.splice(list_index, 1);
+            const list_index = state.blocks.find(x => x.title === state.block_name).lists.indexOf(list);
+            state.blocks.find(x => x.title === state.block_name).lists.splice(list_index, 1);
         },
         addTodo(state, new_to) {
             new_to.new_todo_number.todos.push({
@@ -104,11 +105,6 @@ export default {
                 date: new_to.new_todo_date,
                 priority: new_to.new_todo_priority,
                 done: false
-            });
-        },
-        allDone(state, state_list) {
-            state_list.todos.forEach(todo => {
-                todo.done = true;
             });
         },
         removeTodo(state, remove) {
@@ -141,7 +137,10 @@ export default {
             return state.blocks;
         },
         allLists(state){
-            return state.lists;
+            return state.blocks.find(x => x.title === state.block_name).lists;
+        },
+        BlockName(state){
+            return state.block_name;
         }
     }
 }
