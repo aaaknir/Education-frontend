@@ -4,13 +4,13 @@
             <!-- Header with block's name -->
             <header>
                 <span class="home" @click="changeState">HOME</span>
-                <span class="block-name"><span>BLOCK NAME</span><span v-if="state_list != null"> - {{state_list.title}}</span></span>
+                <span class="block-name"><span>{{this.$store.getters.BlockName}}</span><span v-if="state_list != null"> - {{state_list.title}}</span></span>
             </header>
 
             <!-- Customize progress bar -->
-            <div class="progress-ring">
+            <div  class="progress-ring">
                 <div class="progress-ring-circle">
-                    <span>33%</span>
+                    <span>0%</span>
                 </div>
             </div>
 
@@ -128,15 +128,19 @@
                     case '!!': return list.todos.filter(todo => todo.priority === this.filter);
                     case '!': return list.todos.filter(todo => todo.priority === this.filter);
                     case 'none': return list.todos.filter(todo => todo.priority === this.filter);
+                    case 'date': return list.todos.filter(todo => todo.date);
                     default: return list.todos;
                 }
             },
             addNewTodo(state_list) {
+                let monthes = ["Jan", "Feb", "Mar", 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
                 if (this.new_todo && this.new_todo_description && this.new_todo_date && this.new_todo_priority) {
+                    let str = this.new_todo_date;
+                    let date = Number(str[8] + str[9]) + " " + monthes[Number(str[5] + str[6])];
                     let new_to = {
                         new_todo: this.new_todo,
                         new_todo_description: this.new_todo_description,
-                        new_todo_date: this.new_todo_date,
+                        new_todo_date: date,
                         new_todo_priority: this.new_todo_priority,
                         new_todo_number: state_list
                     };
@@ -235,7 +239,7 @@
         margin-left: 22px;
         margin-top: 17px;
     }
-    .container header span:hover {
+    .container header span.home:hover {
         cursor: pointer;
     }
     .container .progress-ring {
@@ -441,16 +445,9 @@
         border: none;
         font-style: normal;
         font-weight: normal;
-        font-size: 20px;
-        line-height: 26px;
-        text-align: center;
-        color: #E8E7FF
-    }
-
-    .container .todos-panel .remove span {
-        margin-top: -15px;
-        margin-left: -4px;
-        position: absolute;
+        font-size: 15px;
+        color: #E8E7FF;
+        justify-content: space-around;
     }
     .container .todos-panel .todo-long span {
         margin-left: 25px;
